@@ -5,16 +5,15 @@
  */
 package com.ncs.masterAuto.domain.model.Service;
 
-import com.ncs.masterAuto.domain.bean.CategorieVoiture;
+import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 
 /**
  *
  * @author wadie
  */
-public interface CategorieVoitureService {
+public interface MarqueVoitureService {
 
-    public CategorieVoiture findByNomCategorie(String nomCategorie);
+    public MarqueVoiture findByNomMarque(String nomMarque);
 
-    public int createCaategorie(CategorieVoiture categorieVoiture);
-
+    public int createMarqueVoiture(MarqueVoiture marqueVoiture);
 }

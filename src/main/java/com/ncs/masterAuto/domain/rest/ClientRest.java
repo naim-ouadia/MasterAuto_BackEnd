@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientRest {
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
 
     @GetMapping("/adresseMail/{adresseMail}/motDePasse/{pwd}")
     public Client seConnecter(@PathVariable String adresseMail, @PathVariable String pwd) {

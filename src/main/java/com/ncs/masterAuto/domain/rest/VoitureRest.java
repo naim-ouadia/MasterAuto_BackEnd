@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VoitureRest {
 
     @Autowired
-    VoitureService voitureService;
+   private  VoitureService voitureService;
 
     //******* getters et setters *******//
     public VoitureService getVoitureService() {
@@ -47,10 +47,10 @@ public class VoitureRest {
         return voitureService.createVoiture(voiture);
     }
 
-    @PostMapping("/marques")
-    public Voiture findByMarque(@RequestBody MarqueVoiture marque) {
-        return voitureService.findByMarque(marque);
-    }
+//    @PostMapping("/marques")
+//    public Voiture findByMarque(@RequestBody MarqueVoiture marque) {
+//        return voitureService.findByMarque(marque);
+//    }
 //
 //    @GetMapping
 //    public Voiture findByModel(@PathVariable ModelVoiture model) {

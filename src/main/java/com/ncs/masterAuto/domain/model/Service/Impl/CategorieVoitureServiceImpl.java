@@ -19,20 +19,32 @@ import org.springframework.stereotype.Service;
 public class CategorieVoitureServiceImpl implements CategorieVoitureService {
 
     @Autowired
-    CategorieVoitureDao categorieVoitureDao;
+    private CategorieVoitureDao categorieVoitureDao;
 
-    @Override
-    public CategorieVoiture findByNomCategorie(String nomCategorie) {
-        return categorieVoitureDao.findByNomCategorie(nomCategorie);
-    }
-
-//***** getters et setters ******//
+    //***** getters et setters ******//
     public CategorieVoitureDao getCategorieVoituredao() {
         return categorieVoitureDao;
     }
 
     public void setCategorieVoituredao(CategorieVoitureDao categorieVoituredao) {
         this.categorieVoitureDao = categorieVoituredao;
+    }
+//******************************************************************//
+
+    @Override
+    public CategorieVoiture findByNomCategorie(String nomCategorie) {
+        return categorieVoitureDao.findByNomCategorie(nomCategorie);
+    }
+
+    @Override
+    public int createCaategorie(CategorieVoiture categorieVoiture) {
+        CategorieVoiture categorie = findByNomCategorie(categorieVoiture.getNomCategorie());
+        if (categorie != null) {
+            return -1;
+        } else {
+            categorieVoitureDao.save(categorieVoiture);
+            return 1;
+        }
     }
 
 }

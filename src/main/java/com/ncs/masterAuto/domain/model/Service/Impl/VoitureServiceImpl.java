@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 public class VoitureServiceImpl implements VoitureService {
 
     @Autowired
-    VoitureDao voitureDao;
+    private VoitureDao voitureDao;
 //******getters et setters*****//
 
     public VoitureDao getVoitureDao() {

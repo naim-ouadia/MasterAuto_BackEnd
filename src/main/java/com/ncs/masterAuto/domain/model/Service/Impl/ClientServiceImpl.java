@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
-    ClientDao clientDao;
+    private ClientDao clientDao;
 
     public ClientDao getClientDao() {
         return clientDao;
