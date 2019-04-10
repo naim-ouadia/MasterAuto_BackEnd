@@ -25,6 +25,7 @@ public class Technicien implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     //*****Attributs******//
     private Long id;
+    private String login;
     private String nom;
     private String prenom;
     private Double numTel;
@@ -35,12 +36,12 @@ public class Technicien implements Serializable {
     public Technicien() {
     }
 
-    public Technicien(List<Rdv> rdvs, Long id, String nom, String prenom, Double numTel) {
-        this.rdvs = rdvs;
-        this.id = id;
+    public Technicien(String login, String nom, String prenom, Double numTel, List<Rdv> rdvs) {
+        this.login = login;
         this.nom = nom;
         this.prenom = prenom;
         this.numTel = numTel;
+        this.rdvs = rdvs;
     }
 
     //*****getters et setters *******//
@@ -74,6 +75,14 @@ public class Technicien implements Serializable {
 
     public void setNumTel(Double numTel) {
         this.numTel = numTel;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Long getId() {

@@ -6,67 +6,44 @@
 package com.ncs.masterAuto.domain.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
  * @author wadie
  */
 @Entity
-public class Rdv implements Serializable {
+public class TypeCarburant implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     //*****Attributs******//
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateRdv;
-    @OneToOne
-    private Client client;
-    @ManyToOne
-    private Technicien technicien;
+    private String nomCarburant;
+    @OneToOne(mappedBy = "typeCarburant")
+    private Voiture voiture;
 
-    //**** constructeurs ****//
-    public Rdv() {
+    //*****getters et setters **********//
+    public String getNomCarburant() {
+        return nomCarburant;
     }
 
-    public Rdv(Date dateRdv, Client client, Technicien technicien) {
-        this.dateRdv = dateRdv;
-        this.client = client;
-        this.technicien = technicien;
-    }
-    //****getters et setters ***///
-
-    public Date getDateRdv() {
-        return dateRdv;
+    public void setNomCarburant(String nomCarburant) {
+        this.nomCarburant = nomCarburant;
     }
 
-    public void setDateRdv(Date dateRdv) {
-        this.dateRdv = dateRdv;
+    public Voiture getVoiture() {
+        return voiture;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Technicien getTechnicien() {
-        return technicien;
-    }
-
-    public void setTechnicien(Technicien technicien) {
-        this.technicien = technicien;
+    public void setVoiture(Voiture voiture) {
+        this.voiture = voiture;
     }
 
     public Long getId() {
@@ -75,6 +52,15 @@ public class Rdv implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+//*********** constructeurs **********//
+
+    public TypeCarburant() {
+    }
+
+    public TypeCarburant(String nomCarburant, Voiture voiture) {
+        this.nomCarburant = nomCarburant;
+        this.voiture = voiture;
     }
 
     @Override
@@ -87,10 +73,10 @@ public class Rdv implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rdv)) {
+        if (!(object instanceof TypeCarburant)) {
             return false;
         }
-        Rdv other = (Rdv) object;
+        TypeCarburant other = (TypeCarburant) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -99,7 +85,7 @@ public class Rdv implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ncs.masterAuto.domain.bean.RDV[ id=" + id + " ]";
+        return "com.ncs.masterAuto.domain.bean.TypeCarburantVoiture[ id=" + id + " ]";
     }
 
 }

@@ -9,7 +9,7 @@ import com.ncs.masterAuto.domain.bean.CategorieVoiture;
 import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
-import com.ncs.masterAuto.domain.bean.TypeCarburantVoiture;
+import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public interface VoitureService {
 
     public Voiture findByCategorie(CategorieVoiture categorie);
 
-    public Voiture findByTypeCarburant(TypeCarburantVoiture typeCarburant);
+    public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
 
     public List<Voiture> findByClient(Client client);
 }

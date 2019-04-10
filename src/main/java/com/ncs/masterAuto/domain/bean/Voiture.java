@@ -33,7 +33,7 @@ public class Voiture implements Serializable {
     @ManyToOne
     private CategorieVoiture categorie;
     @OneToOne
-    private TypeCarburantVoiture typeCarburant;
+    private TypeCarburant typeCarburant;
     @ManyToOne
     private Client client;
 
@@ -41,7 +41,7 @@ public class Voiture implements Serializable {
     public Voiture() {
     }
 
-    public Voiture(MarqueVoiture marque, ModelVoiture model, CategorieVoiture categorie, TypeCarburantVoiture typeCarburant, Client client) {
+    public Voiture(MarqueVoiture marque, ModelVoiture model, CategorieVoiture categorie, TypeCarburant typeCarburant, Client client) {
         this.marque = marque;
         this.model = model;
         this.categorie = categorie;
@@ -82,11 +82,11 @@ public class Voiture implements Serializable {
         this.categorie = categorie;
     }
 
-    public TypeCarburantVoiture getTypeCarburant() {
+    public TypeCarburant getTypeCarburant() {
         return typeCarburant;
     }
 
-    public void setTypeCarburant(TypeCarburantVoiture typeCarburant) {
+    public void setTypeCarburant(TypeCarburant typeCarburant) {
         this.typeCarburant = typeCarburant;
     }
 
