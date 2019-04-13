@@ -13,7 +13,10 @@ import com.ncs.masterAuto.domain.bean.Client;
  */
 public interface ClientService {
 
+    public Client findByAdresseMail(String AdresseMail);
+
     public Client seConnecter(String adresseMail, String pwd);
+
     public int createCompte(Client client);
 
 }

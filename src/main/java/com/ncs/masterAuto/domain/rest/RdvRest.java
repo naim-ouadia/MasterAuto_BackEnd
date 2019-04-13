@@ -11,6 +11,7 @@ import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,9 @@ public class RdvRest {
     @Autowired
     private RdvService rdvService;
 
-    @PostMapping("/")
-    public int createRdv(@RequestBody Rdv rdv) {
-        return rdvService.createRdv(rdv);
+    @PostMapping("/AdresseMail/{AdresseMail}/loginTech/{loginTech}")
+    public int createRdv(@RequestBody Rdv rdv, @PathVariable String AdresseMail, @PathVariable String loginTech) {
+        return rdvService.createRdv(rdv, AdresseMail, loginTech);
     }
 
     @PostMapping("/client")

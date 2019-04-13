@@ -115,7 +115,7 @@ public class Technicien implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ncs.masterAuto.domain.bean.Technicien[ id=" + id + " ]";
+        return "Technicien{" + "id=" + id + ", login=" + login + ", nom=" + nom + ", prenom=" + prenom + ", numTel=" + numTel + ", rdvs=" + rdvs + '}';
     }
 
 }

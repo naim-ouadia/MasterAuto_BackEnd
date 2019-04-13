@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wadie
  */
 @RestController
-@RequestMapping("/master_Auto/technicien")
+@RequestMapping("/master_Auto/techniciens")
 public class TechnicienRest {
 
     @Autowired
@@ -39,6 +39,7 @@ public class TechnicienRest {
     public int createTechnicien(@RequestBody Technicien technicien) {
         return technicienService.createTechnicien(technicien);
     }
+
 
     @GetMapping("/login/{login}")
     public Technicien findByLogin(@PathVariable String login) {

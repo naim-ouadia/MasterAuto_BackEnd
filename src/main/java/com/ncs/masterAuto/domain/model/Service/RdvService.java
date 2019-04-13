@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public interface RdvService {
 
-    public int createRdv(Rdv rdv);
+    public int createRdv(Rdv rdv, String AdresseMail, String loginTech);
 
     public Rdv findByClient(Client client);
 
