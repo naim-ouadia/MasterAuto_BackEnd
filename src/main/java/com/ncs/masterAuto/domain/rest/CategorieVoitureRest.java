@@ -26,23 +26,23 @@ public class CategorieVoitureRest {
     @Autowired
     private CategorieVoitureService categorieVoitureService;
 
+    @PostMapping("/")
+    public int createCategorie(@RequestBody CategorieVoiture categorie) {
+        return categorieVoitureService.createCategorie(categorie);
+    }
+
+    @GetMapping("/nomCategorie/{nomCategorie}")
+    public CategorieVoiture findByNomCategorie(@PathVariable String nomCategorie) {
+        return categorieVoitureService.findByNomCategorie(nomCategorie);
+    }
+//************getters et setters*************//
+
     public CategorieVoitureService getCategorieVoitureService() {
         return categorieVoitureService;
     }
 
     public void setCategorieVoitureService(CategorieVoitureService categorieVoitureService) {
         this.categorieVoitureService = categorieVoitureService;
-    }
-
-    @GetMapping("/nomCategorie/{nomCategorie}")
-    //*******************************************************************//
-    public CategorieVoiture findByNomCategorie(@PathVariable String nomCategorie) {
-        return categorieVoitureService.findByNomCategorie(nomCategorie);
-    }
-
-    @PostMapping("/")
-    public int createCaategorie(@RequestBody CategorieVoiture categorieVoiture) {
-        return categorieVoitureService.createCaategorie(categorieVoiture);
     }
 
 }

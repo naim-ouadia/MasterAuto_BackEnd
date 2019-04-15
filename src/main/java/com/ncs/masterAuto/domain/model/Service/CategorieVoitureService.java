@@ -15,6 +15,6 @@ public interface CategorieVoitureService {
 
     public CategorieVoiture findByNomCategorie(String nomCategorie);
 
-    public int createCaategorie(CategorieVoiture categorieVoiture);
+    public int createCategorie(CategorieVoiture categorie);
 
 }

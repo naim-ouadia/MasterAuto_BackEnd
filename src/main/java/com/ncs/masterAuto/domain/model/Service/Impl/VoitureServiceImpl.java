@@ -11,6 +11,7 @@ import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
+import com.ncs.masterAuto.domain.model.Service.CategorieVoitureService;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import com.ncs.masterAuto.domain.model.dao.VoitureDao;
 import java.util.List;
@@ -62,20 +63,33 @@ public class VoitureServiceImpl implements VoitureService {
         return voitureDao.findByClient(client);
     }
 
+//    @Override
+//    public int createVoiture(Voiture voiture) {
+//
+//        for (CategorieVoiture categorieVoiture : categories) {
+//            voiture.setCategorie(categorieVoiture);
+//            voitureDao.save(voiture);
+//
+//        }
+//        return 1;
+//        for (MarqueVoiture marqueVoiture : marques) {
+//            voiture.setMarque(marqueVoiture);
+//        }
+//        for (ModelVoiture modelVoiture : models) {
+//            voiture.setModel(modelVoiture);
+//        }
+//        for (TypeCarburant typeCarburant : typeCarburants) {
+//            voiture.setTypeCarburant(typeCarburant);
+//            
+//        }
+//    }
     @Override
-    public int createVoiture(Voiture voiture) {
-
-        Voiture v = voitureDao.findByMarque(voiture.getMarque());
-        Voiture v2 = voitureDao.findByModel(voiture.getModel());
-        Voiture v3 = voitureDao.findByTypeCarburant(v2.getTypeCarburant());
-        if (voiture == null) {
-            return -1;
-        } else if (v3 != null) {
-            return -2;
-        } else {
+    public int createVoiture(CategorieVoiture categorieVoiture, List<Voiture> voitures) {
+        for (Voiture voiture : voitures) {
+            voiture.setCategorie(categorieVoiture);
             voitureDao.save(voiture);
-            return 1;
         }
+        return 1;
     }
 
 }

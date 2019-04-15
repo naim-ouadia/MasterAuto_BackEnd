@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
 import com.ncs.masterAuto.domain.model.Service.CategorieVoitureService;
+import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import com.ncs.masterAuto.domain.model.dao.CategorieVoitureDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class CategorieVoitureServiceImpl implements CategorieVoitureService {
 
     @Autowired
     private CategorieVoitureDao categorieVoitureDao;
+    @Autowired
+    private VoitureService voitureService;
 
     //***** getters et setters ******//
     public CategorieVoitureDao getCategorieVoituredao() {
@@ -37,14 +40,10 @@ public class CategorieVoitureServiceImpl implements CategorieVoitureService {
     }
 
     @Override
-    public int createCaategorie(CategorieVoiture categorieVoiture) {
-        CategorieVoiture categorie = findByNomCategorie(categorieVoiture.getNomCategorie());
-        if (categorie != null) {
-            return -1;
-        } else {
-            categorieVoitureDao.save(categorieVoiture);
-            return 1;
-        }
+    public int createCategorie(CategorieVoiture categorie) {
+        voitureService.createVoiture(categorie, categorie.getVoitures());
+        categorieVoitureDao.save(categorie);
+        return 1;
     }
 
 }

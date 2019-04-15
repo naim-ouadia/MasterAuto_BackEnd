@@ -19,7 +19,8 @@ import java.util.List;
  */
 public interface VoitureService {
 
-    public int createVoiture(Voiture voiture);
+    public int createVoiture(CategorieVoiture categorieVoiture, List<Voiture> voitures);
+    // public int createVoiture(Voiture voiture, List<CategorieVoiture> categories, List<MarqueVoiture> marques, List<ModelVoiture> models, List<TypeCarburant> typeCarburants);
 
     public Voiture findByMarque(MarqueVoiture marque);
 

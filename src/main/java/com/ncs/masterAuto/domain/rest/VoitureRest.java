@@ -42,10 +42,10 @@ public class VoitureRest {
     }
 //*************************************************************//
 
-    @PostMapping("/")
-    public int createVoiture(@RequestBody Voiture voiture) {
-        return voitureService.createVoiture(voiture);
-    }
+//    @PostMapping("/")
+//    public int createVoiture(@RequestBody Voiture voiture) {
+//        return voitureService.createVoiture(voiture);
+//    }
 
 //    @PostMapping("/marques")
 //    public Voiture findByMarque(@RequestBody MarqueVoiture marque) {
