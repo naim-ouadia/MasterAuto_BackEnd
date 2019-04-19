@@ -3,31 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ncs.masterAuto.domain.bean;
+package com.ncs.masterAuto.domaine.rest.vo;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
 /**
  *
  * @author wadie
  */
-@Entity
-public class Admin implements Serializable {
+public class ClientVo {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    //***** attributs *****//
     private Long id;
     private String nom;
     private String prenom;
     private String adresseMail;
+    private String adressePostale;
+    private String numTel;
     private String pwd;
     private String pwdConfirmation;
+    private List<VoitureVo> voituresVos;
+    private RdvVo rdvVo;
 
     public Long getId() {
         return id;
@@ -61,6 +56,22 @@ public class Admin implements Serializable {
         this.adresseMail = adresseMail;
     }
 
+    public String getAdressePostale() {
+        return adressePostale;
+    }
+
+    public void setAdressePostale(String adressePostale) {
+        this.adressePostale = adressePostale;
+    }
+
+    public String getNumTel() {
+        return numTel;
+    }
+
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
+    }
+
     public String getPwd() {
         return pwd;
     }
@@ -73,34 +84,24 @@ public class Admin implements Serializable {
         return pwdConfirmation;
     }
 
-    //***** getters et setters *****///
     public void setPwdConfirmation(String pwdConfirmation) {
         this.pwdConfirmation = pwdConfirmation;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public List<VoitureVo> getVoituresVos() {
+        return voituresVos;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Admin)) {
-            return false;
-        }
-        Admin other = (Admin) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setVoituresVos(List<VoitureVo> voituresVos) {
+        this.voituresVos = voituresVos;
     }
 
-    @Override
-    public String toString() {
-        return "com.ncs.masterAuto.domain.bean.Admin[ id=" + id + " ]";
+    public RdvVo getRdvVo() {
+        return rdvVo;
+    }
+
+    public void setRdvVo(RdvVo rdvVo) {
+        this.rdvVo = rdvVo;
     }
 
 }
