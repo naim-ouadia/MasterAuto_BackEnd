@@ -10,6 +10,7 @@ import com.ncs.masterAuto.domain.model.Service.ClientService;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.dao.ClientDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,6 +24,8 @@ public class ClientServiceImpl implements ClientService {
     private ClientDao clientDao;
     @Autowired
     private RdvService rdvService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public ClientDao getClientDao() {
         return clientDao;
@@ -38,6 +41,14 @@ public class ClientServiceImpl implements ClientService {
 
     public void setRdvService(RdvService rdvService) {
         this.rdvService = rdvService;
+    }
+
+    public BCryptPasswordEncoder getbCryptPasswordEncoder() {
+        return bCryptPasswordEncoder;
+    }
+
+    public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     //*******************************************************//
@@ -61,9 +72,15 @@ public class ClientServiceImpl implements ClientService {
         } else if (c != null) {
             return -3;
         } else {
+            client.setPwd(bCryptPasswordEncoder.encode(client.getPwd()));
             clientDao.save(client);
             return 1;
         }
+//        if (c != null) {
+//            throw new RuntimeException("client existe déja ");
+//        }
+//        clientDao.save(client);
+//        return 1;
     }
 
     @Override
