@@ -5,16 +5,19 @@
  */
 package com.ncs.masterAuto.security;
 
-import com.ncs.masterAuto.domain.bean.Client;
-import com.ncs.masterAuto.domain.model.Service.ClientService;
+import com.ncs.masterAuto.domain.bean.User;
+import com.ncs.masterAuto.domain.model.Service.AccountService;
+import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+
 
 /**
  *
@@ -22,18 +25,22 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+    
     @Autowired
-    private ClientService clientService;
-
+    private AccountService accountService;
+    
     @Override
-    public UserDetails loadUserByUsername(String adresseMail) throws UsernameNotFoundException {
-        Client client = clientService.findByAdresseMail(adresseMail);
-        if (client == null) {
-            throw new UsernameNotFoundException("client non  trouvé");
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        User user = accountService.loadUserByUsername(userName);
+        if (user == null) {
+            throw new UsernameNotFoundException("User non  trouvé");
         }
-        Collection<? extends GrantedAuthority> authorities = null;
-        return new User(client.getAdresseMail(), client.getPwd(), authorities);
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(r -> {
+            authorities.add(new SimpleGrantedAuthority(r.getroleName()));
+        });
+        
+        return (UserDetails) new User(user.getUserName(), user.getPwd(),authorities);
     }
-
+    
 }

@@ -37,7 +37,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         response.addHeader("Access-Control -Allow-Methods", "GET,POST,PUT,DELETE,PATCH");
         if (request.getMethod().equals(("OPTIONS"))) {
             response.setStatus(HttpServletResponse.SC_OK);
-        } else if (request.getRequestURI().equals("/login")) {//pour Login 
+        } else if (request.getRequestURI().equals("/")) {//pour Login 
             filterChain.doFilter(request, response);
             return;
         } else {

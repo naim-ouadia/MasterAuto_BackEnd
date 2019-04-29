@@ -56,6 +56,7 @@ public class ClientServiceImpl implements ClientService {
     public Client seConnecter(String adresseMail, String pwd) {
         Client client = clientDao.findByadresseMail(adresseMail);
         if (client == null || !client.getPwd().equals(pwd)) {
+//            throw new RuntimeException("Client pas trouvé ou mot de passe incorrect");
             return null;
         } else {
             return client;
@@ -68,19 +69,20 @@ public class ClientServiceImpl implements ClientService {
         if (client == null) {
             return -1;
         } else if (!client.getPwd().equals(client.getPwdConfirmation())) {
-            return -2;
+            throw new RuntimeException("Mot de passe et mot de passe de confirmation ne sont pas identique");
+//            return -2;
+
         } else if (c != null) {
-            return -3;
+            throw new RuntimeException("Client déja existant");
+            // return -3;
         } else {
             client.setPwd(bCryptPasswordEncoder.encode(client.getPwd()));
+            client.setPwdConfirmation(bCryptPasswordEncoder.encode(client.getPwdConfirmation()));
             clientDao.save(client);
-            return 1;
+            throw new RuntimeException("Compte Client bien créer ");
+//            return 1;
         }
-//        if (c != null) {
-//            throw new RuntimeException("client existe déja ");
-//        }
-//        clientDao.save(client);
-//        return 1;
+
     }
 
     @Override

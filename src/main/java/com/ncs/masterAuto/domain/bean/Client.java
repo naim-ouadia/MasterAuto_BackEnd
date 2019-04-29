@@ -6,6 +6,8 @@
 package com.ncs.masterAuto.domain.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +39,7 @@ public class Client implements Serializable {
     private List<Voiture> voitures;
     @OneToOne(mappedBy = "client")
     private Rdv rdv;
+    
 
     //********getters et setters *************//
     public String getNom() {
@@ -94,7 +97,6 @@ public class Client implements Serializable {
     public void setPwdConfirmation(String pwdConfirmation) {
         this.pwdConfirmation = pwdConfirmation;
     }
-    
 
     public List<Voiture> getVoitures() {
         return voitures;
@@ -135,8 +137,6 @@ public class Client implements Serializable {
         this.voitures = voitures;
         this.rdv = rdv;
     }
-
-    
 
     @Override
     public int hashCode() {
