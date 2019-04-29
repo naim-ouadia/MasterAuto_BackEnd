@@ -31,22 +31,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author wadie
  */
 public class JWTAuthentificationFilter extends UsernamePasswordAuthenticationFilter {
-    
+
     @Autowired
     private AuthenticationManager authenticationManager;
-    
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             Client client = new ObjectMapper().readValue(request.getInputStream(), Client.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(client.getAdresseMail(), client.getPwd()));
-            
+
         } catch (IOException ex) {
             Logger.getLogger(JWTAuthentificationFilter.class.getName()).log(Level.SEVERE, null, ex);
         }
         throw new RuntimeException("pb dans le contenue de la requete");
     }
-    
+
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
@@ -59,9 +59,9 @@ public class JWTAuthentificationFilter extends UsernamePasswordAuthenticationFil
                 .withIssuer(request.getRequestURI())
                 .withSubject(client.getNom())
                 .withArrayClaim("roles", roles.toArray(new String[roles.size()]))
-                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 24 * 3600))
-                .sign(Algorithm.HMAC256("soyas"));
-        response.addHeader("Authorization",jwt );
+                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityPrams.EXPEIRATION))
+                .sign(Algorithm.HMAC256(SecurityPrams.SECRET));
+        response.addHeader(SecurityPrams.JWT_HEADER_NAME, jwt);
     }
-    
+
 }
