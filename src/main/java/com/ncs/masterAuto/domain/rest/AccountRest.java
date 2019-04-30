@@ -11,6 +11,8 @@ import com.ncs.masterAuto.domain.model.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/master_Auto/users")
-public class UserRest {
+public class AccountRest {
 
     @Autowired
     private AccountService accountService;
@@ -30,16 +32,18 @@ public class UserRest {
         return accountService.saveUser(userName, password, confirmedPassword);
     }
 
-    public RoleUser save(RoleUser roleUser) {
-        return accountService.save(roleUser);
+    @PostMapping("/newRole")
+    public RoleUser saveRole(@RequestBody RoleUser roleUser) {
+        return accountService.saveRole(roleUser);
     }
 
-    @GetMapping("/username/{username}")
-    public User loadUserByUsername(@PathVariable String username) {
+    @PostMapping("/login")
+    public User loadUserByUsername(@RequestBody String username) {
         return accountService.loadUserByUsername(username);
     }
 
-    public void addRoleToUser(String userName, String roleName) {
+    @GetMapping("/userName/{userName}/roleName/{roleName}")
+    public void addRoleToUser(@PathVariable String userName, @PathVariable String roleName) {
         accountService.addRoleToUser(userName, roleName);
     }
 }

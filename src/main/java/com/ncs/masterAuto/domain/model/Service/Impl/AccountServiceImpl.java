@@ -42,12 +42,12 @@ public class AccountServiceImpl implements AccountService {
         u.setUserName(userName);
         u.setPwd(bCryptPasswordEncoder.encode(password));
         userDao.save(u);
-        addRoleToUser(userName, "user");
+        addRoleToUser(userName, "USER");
         return u;
     }
 
     @Override
-    public RoleUser save(RoleUser roleUser) {
+    public RoleUser saveRole(RoleUser roleUser) {
         return roleUserDao.save(roleUser);
     }
 

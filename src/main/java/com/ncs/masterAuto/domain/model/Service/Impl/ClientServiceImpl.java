@@ -56,7 +56,6 @@ public class ClientServiceImpl implements ClientService {
     public Client seConnecter(String adresseMail, String pwd) {
         Client client = clientDao.findByadresseMail(adresseMail);
         if (client == null || !client.getPwd().equals(pwd)) {
-//            throw new RuntimeException("Client pas trouvé ou mot de passe incorrect");
             return null;
         } else {
             return client;

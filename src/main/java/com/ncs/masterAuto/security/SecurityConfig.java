@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  *
@@ -37,16 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/master_Auto/clients/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/profuits/**").permitAll();
-        http.authorizeRequests().antMatchers("/master_Auto/clients/**", "/").permitAll();
-        http.authorizeRequests().antMatchers("/master_Auto/users/**", "/").permitAll();
-        http.authorizeRequests().antMatchers("/master_Auto/techniciens/").hasAuthority("Admin");
+//        http.csrf().disable();
+        http.formLogin();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/master_Auto/clients/**").permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/profuits/**").permitAll();
+        http.authorizeRequests().antMatchers("/login/**").permitAll();
+        //   http.authorizeRequests().antMatchers("/master_Auto/techniciens/").hasAuthority("Admin");
         http.authorizeRequests().anyRequest().authenticated();//tte les requetes ont besoin d'une autorisation
-        http.addFilter(new JWTAuthentificationFilter());
-        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilter(new JWTAuthentificationFilter());
+//        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 

@@ -17,18 +17,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
-
 /**
  *
  * @author wadie
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    
+
     @Autowired
     private AccountService accountService;
-    
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = accountService.loadUserByUsername(userName);
@@ -39,8 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.getRoles().forEach(r -> {
             authorities.add(new SimpleGrantedAuthority(r.getroleName()));
         });
-        
-        return (UserDetails) new User(user.getUserName(), user.getPwd(),authorities);
+
+        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPwd(), authorities);
     }
-    
 }

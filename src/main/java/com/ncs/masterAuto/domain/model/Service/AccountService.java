@@ -16,7 +16,7 @@ public interface AccountService {
 
     public User saveUser(String userName, String password, String confirmedPassword);
 
-    public RoleUser save(RoleUser roleUser);
+    public RoleUser saveRole(RoleUser roleUser);
 
     public User loadUserByUsername(String username);
 

@@ -30,7 +30,6 @@ public class User implements Serializable {
     // @Column(unique = true) //l'adresse mail doit etre unique dans la base de donnée
     private String userName;
     private String pwd;
-//    private String pwdConfirmation;
     @ManyToMany//(fetch = FetchType.EAGER) // à chaque fois que JPA charge un User va charger aussi les roles de ce user
     private Collection<RoleUser> roles = new ArrayList<>();
 
@@ -70,13 +69,6 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-//    public String getPwdConfirmation() {
-//        return pwdConfirmation;
-//    }
-//
-//    public void setPwdConfirmation(String pwdConfirmation) {
-//        this.pwdConfirmation = pwdConfirmation;
-//    }
     public Collection<RoleUser> getRoles() {
         return roles;
     }
