@@ -9,28 +9,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import org.springframework.security.core.GrantedAuthority;
+import lombok.Data;
 
 /**
  *
  * @author wadie
  */
 @Entity
+@Data
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //***** attributs *****//
     private Long id;
     // @Column(unique = true) //l'adresse mail doit etre unique dans la base de donnée
     private String userName;
     private String pwd;
-    @ManyToMany//(fetch = FetchType.EAGER) // à chaque fois que JPA charge un User va charger aussi les roles de ce user
+    @ManyToMany(fetch = FetchType.EAGER) // à chaque fois que JPA charge un User va charger aussi les roles de ce user
     private Collection<RoleUser> roles = new ArrayList<>();
 
     public User() {
@@ -41,9 +42,8 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-    public User(String userName, String pwd, Collection<GrantedAuthority> authorities) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+   
 
     public Long getId() {
         return id;

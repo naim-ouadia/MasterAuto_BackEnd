@@ -37,7 +37,7 @@ public class AccountRest {
         return accountService.saveRole(roleUser);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/loadUser")
     public User loadUserByUsername(@RequestBody String username) {
         return accountService.loadUserByUsername(username);
     }

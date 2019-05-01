@@ -13,12 +13,14 @@ import com.ncs.masterAuto.domain.model.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author wadie
  */
 @Service
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
@@ -61,7 +63,7 @@ public class AccountServiceImpl implements AccountService {
         User user = userDao.findByUserName(userName);
         RoleUser role = roleUserDao.findByRoleName(roleName);
         user.getRoles().add(role);
-        
+
     }
 
 }

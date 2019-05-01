@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import lombok.Data;
 
 /**
  *
  * @author wadie
  */
 @Entity
+@Data
 public class RoleUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,20 +30,12 @@ public class RoleUser implements Serializable {
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
-    public List<User> getUsers() {
-        return users;
+    public RoleUser() {
     }
 
-    public void setUsers(List<User> users) {
+    public RoleUser(String roleName, List<User> users) {
+        this.roleName = roleName;
         this.users = users;
-    }
-
-    public String getroleName() {
-        return roleName;
-    }
-
-    public void setroleName(String nomRole) {
-        this.roleName = nomRole;
     }
 
     public Long getId() {
@@ -52,11 +46,19 @@ public class RoleUser implements Serializable {
         this.id = id;
     }
 
-    public RoleUser() {
+    public String getRoleName() {
+        return roleName;
     }
 
-    public RoleUser(String nomRole, List<User> users) {
-        this.roleName = nomRole;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
