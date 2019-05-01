@@ -5,7 +5,7 @@
  */
 package com.ncs.masterAuto.domain.model.dao;
 
-import com.ncs.masterAuto.domain.bean.User;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author wadie
  */
 @Repository
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserAccountDao extends JpaRepository<UserAccount, Long> {
 
-   public User findByUserName(String userName);
+   public UserAccount findByUsername(String userName);
 }

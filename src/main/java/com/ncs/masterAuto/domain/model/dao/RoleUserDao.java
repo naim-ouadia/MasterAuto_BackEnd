@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleUserDao extends JpaRepository<RoleUser, Long> {
 
-    public RoleUser findByRoleName(String roleName);
+    public RoleUser findByRolename(String roleName);
 }

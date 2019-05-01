@@ -6,7 +6,7 @@
 package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.RoleUser;
-import com.ncs.masterAuto.domain.bean.User;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class AccountRest {
     private AccountService accountService;
 
     @GetMapping("/userName/{userName}/password/{password}/confirmedPassword/{confirmedPassword}")
-    public User saveUser(@PathVariable String userName, @PathVariable String password, @PathVariable String confirmedPassword) {
+    public UserAccount saveUser(@PathVariable String userName, @PathVariable String password, @PathVariable String confirmedPassword) {
         return accountService.saveUser(userName, password, confirmedPassword);
     }
 
@@ -38,7 +38,7 @@ public class AccountRest {
     }
 
     @PostMapping("/loadUser")
-    public User loadUserByUsername(@RequestBody String username) {
+    public UserAccount loadUserByUsername(@RequestBody String username) {
         return accountService.loadUserByUsername(username);
     }
 

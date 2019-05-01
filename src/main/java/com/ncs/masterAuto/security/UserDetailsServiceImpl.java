@@ -5,7 +5,7 @@
  */
 package com.ncs.masterAuto.security;
 
-import com.ncs.masterAuto.domain.bean.User;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,15 +29,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = accountService.loadUserByUsername(userName);
-        if (user == null) {
+        UserAccount userAccount = accountService.loadUserByUsername(userName);
+        if (userAccount == null) {
             throw new UsernameNotFoundException("User non  trouvé");
         }
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        user.getRoles().forEach(r -> {
-            authorities.add(new SimpleGrantedAuthority(r.getRoleName()));
+        userAccount.getRoles().forEach(r -> {
+            authorities.add(new SimpleGrantedAuthority(r.getRolename()));
         });
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPwd(), authorities);
+        return new org.springframework.security.core.userdetails.User(userAccount.getUsername(), userAccount.getPassword(), authorities);
     }
 }

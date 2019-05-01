@@ -5,9 +5,9 @@
  */
 package com.ncs.masterAuto.security;
 
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,9 +29,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
+    //pr chaque requete envoyée par l'user , cette methode va s'xeccuter 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        //authoriser ttes les requetes qui viennent d'un autre domaine
         response.addHeader("Access-Control-Allow-Origin", "*");
+        //authoriser le navigateur à m'envoyer ttes les requetes qui contiennent ces entetes 
         response.addHeader("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,authorization");
         response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin,Access-Control-Allow-Credentials,authorization");
         response.addHeader("Access-Control -Allow-Methods", "GET,POST,PUT,DELETE,PATCH");
@@ -46,7 +49,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
-            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecurityPrams.SECRET)).build();
+            JWTVerifier verifier = JWT.require(com.auth0.jwt.algorithms.Algorithm.HMAC256(SecurityPrams.SECRET)).build();
+            //enlever le prefix
             String jwt = jwtToken.substring(SecurityPrams.HEADER_PREFIX.length());
             DecodedJWT decodedJWT = verifier.verify(jwt);
             String username = decodedJWT.getSubject();

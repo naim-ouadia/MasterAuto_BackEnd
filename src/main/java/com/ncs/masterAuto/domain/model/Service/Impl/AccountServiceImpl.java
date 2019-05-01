@@ -6,10 +6,10 @@
 package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.RoleUser;
-import com.ncs.masterAuto.domain.bean.User;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
 import com.ncs.masterAuto.domain.model.dao.RoleUserDao;
-import com.ncs.masterAuto.domain.model.dao.UserDao;
+import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,15 +24,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private UserDao userDao;
+    private UserAccountDao userAccountDao;
     @Autowired
     private RoleUserDao roleUserDao;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User saveUser(String userName, String password, String confirmedPassword) {
-        User user = userDao.findByUserName(userName);
+    public UserAccount saveUser(String userName, String password, String confirmedPassword) {
+        UserAccount user = userAccountDao.findByUsername(userName);
         if (user != null) {
             throw new RuntimeException("utilisatuer deja existant ");
 
@@ -40,10 +40,10 @@ public class AccountServiceImpl implements AccountService {
         if (!password.equals(confirmedPassword)) {
             throw new RuntimeException("password et password de confirmation ne sont pas identique ");
         }
-        User u = new User();
-        u.setUserName(userName);
-        u.setPwd(bCryptPasswordEncoder.encode(password));
-        userDao.save(u);
+        UserAccount u = new UserAccount();
+        u.setUsername(userName);
+        u.setPassword(bCryptPasswordEncoder.encode(password));
+        userAccountDao.save(u);
         addRoleToUser(userName, "USER");
         return u;
     }
@@ -54,14 +54,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User loadUserByUsername(String username) {
-        return userDao.findByUserName(username);
+    public UserAccount loadUserByUsername(String username) {
+        return userAccountDao.findByUsername(username);
     }
 
     @Override
     public void addRoleToUser(String userName, String roleName) {
-        User user = userDao.findByUserName(userName);
-        RoleUser role = roleUserDao.findByRoleName(roleName);
+        UserAccount user = userAccountDao.findByUsername(userName);
+        RoleUser role = roleUserDao.findByRolename(roleName);
         user.getRoles().add(role);
 
     }

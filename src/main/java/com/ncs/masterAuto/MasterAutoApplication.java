@@ -20,8 +20,8 @@ public class MasterAutoApplication {
 //    @Bean
 //    CommandLineRunner start(AccountService accountService) {
 //        return args -> {
-//            accountService.saveRole(new RoleUser("USER", null));
-//            accountService.saveRole(new RoleUser("Admin", null));
+//            accountService.saveRole(new RoleUser(null, "User"));
+//            accountService.saveRole(new RoleUser(null, "Admin"));
 //            Stream.of("user1", "user2", "user3", "admin").forEach(un -> {
 //                accountService.saveUser(un, "1234", "1234");
 //            });
