@@ -6,7 +6,6 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
@@ -30,5 +29,4 @@ public interface VoitureService {
 
     public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
 
-    public List<Voiture> findByClient(Client client);
 }

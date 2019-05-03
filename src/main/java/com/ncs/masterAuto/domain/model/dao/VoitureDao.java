@@ -6,7 +6,6 @@
 package com.ncs.masterAuto.domain.model.dao;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
@@ -30,6 +29,5 @@ public interface VoitureDao extends JpaRepository<Voiture, Long> {
 
     public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
 
-    public List<Voiture> findByClient(Client client);
     
 }

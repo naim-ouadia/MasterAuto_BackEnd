@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.model.Service;
 
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import java.util.Date;
@@ -18,7 +17,6 @@ public interface RdvService {
 
     public int createRdv(Rdv rdv, String AdresseMail, String loginTech);
 
-    public Rdv findByClient(Client client);
 
     public Rdv findByTechnicien(Technicien technicien);
 

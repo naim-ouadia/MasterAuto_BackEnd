@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.model.dao;
 
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import java.util.Date;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RdvDao extends JpaRepository<Rdv, Long> {
 
-    public Rdv findByClient(Client client);
 
     public Rdv findByTechnicien(Technicien technicien);
 

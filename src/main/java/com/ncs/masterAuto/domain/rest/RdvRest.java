@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.rest;
 
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
@@ -33,10 +32,6 @@ public class RdvRest {
         return rdvService.createRdv(rdv, AdresseMail, loginTech);
     }
 
-    @PostMapping("/client")
-    public Rdv findByClient(@RequestBody Client client) {
-        return rdvService.findByClient(client);
-    }
 
     @PostMapping("/Technicien")
     public Rdv findByTechnicien(@RequestBody Technicien technicien) {

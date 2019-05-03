@@ -40,7 +40,7 @@ public class JWTAuthentificationFilter extends UsernamePasswordAuthenticationFil
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             UserAccount userAccount = new ObjectMapper().readValue(request.getInputStream(), UserAccount.class);//diseralisation dejson vers un objet java ( du textJson qui devient Java)
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userAccount.getUsername(), userAccount.getPassword()));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userAccount.getAdresseMail(), userAccount.getPassword()));
 
         } catch (IOException ex) {
             ex.printStackTrace();

@@ -34,20 +34,18 @@ public class Voiture implements Serializable {
     private CategorieVoiture categorie;
     @OneToOne
     private TypeCarburant typeCarburant;
-    @ManyToOne
-    private Client client;
 
     //**** constructeurs ****//
     public Voiture() {
     }
 
-    public Voiture(MarqueVoiture marque, ModelVoiture model, CategorieVoiture categorie, TypeCarburant typeCarburant, Client client) {
-        this.marque = marque;
-        this.model = model;
-        this.categorie = categorie;
-        this.typeCarburant = typeCarburant;
-        this.client = client;
-    }
+//    public Voiture(MarqueVoiture marque, ModelVoiture model, CategorieVoiture categorie, TypeCarburant typeCarburant, Client client) {
+//        this.marque = marque;
+//        this.model = model;
+//        this.categorie = categorie;
+//        this.typeCarburant = typeCarburant;
+//        this.client = client;
+//    }
 
     //*****getters et setters *****//
     public Long getId() {
@@ -88,14 +86,6 @@ public class Voiture implements Serializable {
 
     public void setTypeCarburant(TypeCarburant typeCarburant) {
         this.typeCarburant = typeCarburant;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     @Override

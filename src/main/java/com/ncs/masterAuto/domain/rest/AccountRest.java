@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.rest;
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,23 +28,32 @@ public class AccountRest {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/userName/{userName}/password/{password}/confirmedPassword/{confirmedPassword}")
-    public UserAccount saveUser(@PathVariable String userName, @PathVariable String password, @PathVariable String confirmedPassword) {
-        return accountService.saveUser(userName, password, confirmedPassword);
-    }
-
     @PostMapping("/newRole")
     public RoleUser saveRole(@RequestBody RoleUser roleUser) {
         return accountService.saveRole(roleUser);
     }
 
-    @PostMapping("/loadUser")
-    public UserAccount loadUserByUsername(@RequestBody String username) {
-        return accountService.loadUserByUsername(username);
+    @GetMapping("/username/{username}")
+    public UserAccount loadUserByUsername(@PathVariable String adresseMail) {
+        return accountService.loadUserByAdresseMail(adresseMail);
     }
 
     @GetMapping("/userName/{userName}/roleName/{roleName}")
     public void addRoleToUser(@PathVariable String userName, @PathVariable String roleName) {
         accountService.addRoleToUser(userName, roleName);
     }
+
+    @PostMapping("/register")
+    public UserAccount register(@RequestBody UserAccount userAccount) {
+        return accountService.saveUser(userAccount);
+    }
+
 }
+
+//@Data
+//class UserForm {
+//
+//    private String username;
+//    private String password;
+//    private String confirmedPassword;
+//}

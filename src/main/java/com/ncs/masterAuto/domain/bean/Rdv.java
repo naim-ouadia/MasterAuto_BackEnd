@@ -30,7 +30,6 @@ public class Rdv implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateRdv;
     @OneToOne
-    private Client client;
     @ManyToOne
     private Technicien technicien;
 
@@ -38,11 +37,11 @@ public class Rdv implements Serializable {
     public Rdv() {
     }
 
-    public Rdv(Date dateRdv, Client client, Technicien technicien) {
-        this.dateRdv = dateRdv;
-        this.client = client;
-        this.technicien = technicien;
-    }
+//    public Rdv(Date dateRdv, Client client, Technicien technicien) {
+//        this.dateRdv = dateRdv;
+//        this.client = client;
+//        this.technicien = technicien;
+//    }
     //****getters et setters ***///
 
     public Date getDateRdv() {
@@ -53,14 +52,7 @@ public class Rdv implements Serializable {
         this.dateRdv = dateRdv;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
+   
     public Technicien getTechnicien() {
         return technicien;
     }

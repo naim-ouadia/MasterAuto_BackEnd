@@ -6,12 +6,10 @@
 package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
-import com.ncs.masterAuto.domain.bean.Client;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
-import com.ncs.masterAuto.domain.model.Service.CategorieVoitureService;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import com.ncs.masterAuto.domain.model.dao.VoitureDao;
 import java.util.List;
@@ -58,10 +56,10 @@ public class VoitureServiceImpl implements VoitureService {
         return voitureDao.findByTypeCarburant(typeCarburant);
     }
 
-    @Override
-    public List<Voiture> findByClient(Client client) {
-        return voitureDao.findByClient(client);
-    }
+//    @Override
+//    public List<Voiture> findByClient(Client client) {
+//        return voitureDao.findByClient(client);
+//    }
 
 //    @Override
 //    public int createVoiture(Voiture voiture) {

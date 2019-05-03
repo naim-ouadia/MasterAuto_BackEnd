@@ -16,11 +16,11 @@ import com.ncs.masterAuto.domain.bean.UserAccount;
  */
 public interface AccountService {
 
-    public UserAccount saveUser(String userName, String password, String confirmedPassword);
+    public UserAccount saveUser(UserAccount userAccount);
 
     public RoleUser saveRole(RoleUser roleUser);
 
-    public UserAccount loadUserByUsername(String username);
+    public UserAccount loadUserByAdresseMail(String adresseMail);
 
     public void addRoleToUser(String userName, String roleName);
 }

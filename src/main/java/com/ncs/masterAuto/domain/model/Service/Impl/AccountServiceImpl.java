@@ -31,20 +31,21 @@ public class AccountServiceImpl implements AccountService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserAccount saveUser(String userName, String password, String confirmedPassword) {
-        UserAccount user = userAccountDao.findByUsername(userName);
+    public UserAccount saveUser(UserAccount userAccount) {
+        UserAccount user = userAccountDao.findByAdresseMail(userAccount.getAdresseMail());
         if (user != null) {
             throw new RuntimeException("utilisatuer deja existant ");
 
         }
-        if (!password.equals(confirmedPassword)) {
-            throw new RuntimeException("password et password de confirmation ne sont pas identique ");
-        }
+       
         UserAccount u = new UserAccount();
-        u.setUsername(userName);
-        u.setPassword(bCryptPasswordEncoder.encode(password));
+        u.setAdresseMail(userAccount.getAdresseMail());
+        u.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
+        u.setActived(true);
+        u.setAdressePostale(userAccount.getAdressePostale());
+        u.setNumTel(userAccount.getNumTel());
         userAccountDao.save(u);
-        addRoleToUser(userName, "USER");
+        addRoleToUser(userAccount.getAdresseMail(), "User");
         return u;
     }
 
@@ -54,13 +55,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public UserAccount loadUserByUsername(String username) {
-        return userAccountDao.findByUsername(username);
+    public UserAccount loadUserByAdresseMail(String adresseMail) {
+        return userAccountDao.findByAdresseMail(adresseMail);
     }
 
     @Override
     public void addRoleToUser(String userName, String roleName) {
-        UserAccount user = userAccountDao.findByUsername(userName);
+        UserAccount user = userAccountDao.findByAdresseMail(userName);
         RoleUser role = roleUserDao.findByRolename(roleName);
         user.getRoles().add(role);
 

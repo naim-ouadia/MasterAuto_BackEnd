@@ -5,19 +5,9 @@
  */
 package com.ncs.masterAuto.domain.rest;
 
-import com.ncs.masterAuto.domain.bean.CategorieVoiture;
-import com.ncs.masterAuto.domain.bean.Client;
-import com.ncs.masterAuto.domain.bean.MarqueVoiture;
-import com.ncs.masterAuto.domain.bean.ModelVoiture;
-import com.ncs.masterAuto.domain.bean.TypeCarburant;
-import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

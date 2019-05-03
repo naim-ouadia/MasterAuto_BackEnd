@@ -35,7 +35,11 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
-    private String username;
+    private String adresseMail;
+    private String nom;
+    private String prenom;
+    private Double numTel;
+    private String adressePostale;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private boolean actived;
