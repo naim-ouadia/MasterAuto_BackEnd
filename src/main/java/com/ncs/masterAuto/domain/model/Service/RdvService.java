@@ -15,10 +15,11 @@ import java.util.Date;
  */
 public interface RdvService {
 
-    public int createRdv(Rdv rdv, String AdresseMail, String loginTech);
-
+    public Rdv createRdv(Rdv rdv);
 
     public Rdv findByTechnicien(Technicien technicien);
+
+    public Rdv findByLogTech(String logTech);
 
     public Rdv findByDateRdv(Date dateRdv);
 }

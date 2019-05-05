@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TechnicienDao extends JpaRepository<Technicien, Long> {
 
-    public Technicien findByLogin(String log);
+    public Technicien findByloginTech(String loginTech);
 
     public Technicien findByNom(String nom);
 }

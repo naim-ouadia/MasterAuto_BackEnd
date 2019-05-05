@@ -14,7 +14,7 @@ import com.ncs.masterAuto.domain.bean.Technicien;
 public interface TechnicienService {
 
 
-    public int createTechnicien(Technicien technicien);
+    public Technicien createTechnicien(Technicien technicien);
 
     public Technicien findByLogin(String login);
 

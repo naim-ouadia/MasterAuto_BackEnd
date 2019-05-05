@@ -26,20 +26,10 @@ public class TechnicienRest {
     @Autowired
     private TechnicienService technicienService;
 
-    public TechnicienService getTechnicienService() {
-        return technicienService;
-    }
-
-    public void setTechnicienService(TechnicienService technicienService) {
-        this.technicienService = technicienService;
-    }
-    //**********************************************//
-
     @PostMapping("/")
-    public int createTechnicien(@RequestBody Technicien technicien) {
+    public Technicien createTechnicien(@RequestBody Technicien technicien) {
         return technicienService.createTechnicien(technicien);
     }
-
 
     @GetMapping("/login/{login}")
     public Technicien findByLogin(@PathVariable String login) {

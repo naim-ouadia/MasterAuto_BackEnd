@@ -44,6 +44,8 @@ public class AccountServiceImpl implements AccountService {
         u.setActived(true);
         u.setAdressePostale(userAccount.getAdressePostale());
         u.setNumTel(userAccount.getNumTel());
+        u.setNom(userAccount.getNom());
+        u.setPrenom(userAccount.getPrenom());
         userAccountDao.save(u);
         addRoleToUser(userAccount.getAdresseMail(), "User");
         return u;

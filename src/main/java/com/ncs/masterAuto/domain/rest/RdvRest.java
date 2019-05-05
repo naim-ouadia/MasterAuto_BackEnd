@@ -6,10 +6,10 @@
 package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
-import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,18 +27,17 @@ public class RdvRest {
     @Autowired
     private RdvService rdvService;
 
-    @PostMapping("/AdresseMail/{AdresseMail}/loginTech/{loginTech}")
-    public int createRdv(@RequestBody Rdv rdv, @PathVariable String AdresseMail, @PathVariable String loginTech) {
-        return rdvService.createRdv(rdv, AdresseMail, loginTech);
+    @PostMapping("/")
+    public Rdv createRdv(@RequestBody Rdv rdv) {
+        return rdvService.createRdv(rdv);
     }
 
-
-    @PostMapping("/Technicien")
-    public Rdv findByTechnicien(@RequestBody Technicien technicien) {
-        return rdvService.findByTechnicien(technicien);
+    @GetMapping("/logTech/{logTech}")
+    public Rdv findByLogTech(@PathVariable String logTech) {
+        return rdvService.findByLogTech(logTech);
     }
 
-    @PostMapping("/DateRdv")
+    @PostMapping("/dateRdv")
     public Rdv findByDateRdv(@RequestBody Date dateRdv) {
         return rdvService.findByDateRdv(dateRdv);
     }
