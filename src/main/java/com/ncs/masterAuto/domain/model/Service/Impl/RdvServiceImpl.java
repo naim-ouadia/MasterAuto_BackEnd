@@ -7,9 +7,11 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
+import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class RdvServiceImpl implements RdvService {
     private RdvDao rdvDao;
     @Autowired
     private TechnicienDao technicienDao;
+    @Autowired
+    private UserAccountDao userAccountDao;
 
     @Override
     public Rdv createRdv(Rdv rdv) {
@@ -37,13 +41,6 @@ public class RdvServiceImpl implements RdvService {
         if (r != null) {
             throw new RuntimeException("rdv déja existant ");
         }
-
-//        if (rdv.getTechnicien() == null) {
-//            throw new RuntimeException("technicien du rdv est null");
-//        }
-//        if (rdv.getUserAccount() == null) {
-//            throw new RuntimeException("user du rdv est null");
-//        }
         rdvDao.save(rdv);
         return rdv;
     }
@@ -73,5 +70,7 @@ public class RdvServiceImpl implements RdvService {
         }
         return rdv;
     }
+    
+   
 
 }

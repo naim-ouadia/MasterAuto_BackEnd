@@ -5,7 +5,8 @@
  */
 package com.ncs.masterAuto.domain.bean;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,5 +37,5 @@ public class Technicien {
     private String prenom;
     private Double numTel;
     @OneToMany
-    private List<Rdv> rdvs;
+    private Collection<Rdv> rdvs = new ArrayList<>();
 }

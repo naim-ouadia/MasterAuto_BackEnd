@@ -22,4 +22,5 @@ public interface RdvService {
     public Rdv findByLogTech(String logTech);
 
     public Rdv findByDateRdv(Date dateRdv);
+
 }

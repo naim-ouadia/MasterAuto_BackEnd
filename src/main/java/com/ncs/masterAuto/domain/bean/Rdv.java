@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,8 @@ import lombok.ToString;
 @ToString
 public class Rdv {
 
+    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,6 +39,7 @@ public class Rdv {
     private Date dateRdv;
     @OneToOne(fetch = FetchType.EAGER)
     private UserAccount userAccount;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Technicien technicien;
+    
 }

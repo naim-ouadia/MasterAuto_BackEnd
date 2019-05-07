@@ -37,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
             throw new RuntimeException("utilisatuer deja existant ");
 
         }
-       
+
         UserAccount u = new UserAccount();
         u.setAdresseMail(userAccount.getAdresseMail());
         u.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
@@ -58,7 +58,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public UserAccount loadUserByAdresseMail(String adresseMail) {
-        return userAccountDao.findByAdresseMail(adresseMail);
+        UserAccount userAccount = userAccountDao.findByAdresseMail(adresseMail);
+        if (userAccount == null) {
+            throw new RuntimeException("User non trouvé");
+        }
+        return userAccount;
     }
 
     @Override

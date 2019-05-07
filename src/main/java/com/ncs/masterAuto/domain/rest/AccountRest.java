@@ -33,14 +33,14 @@ public class AccountRest {
         return accountService.saveRole(roleUser);
     }
 
-    @GetMapping("/username/{username}")
+    @GetMapping("/adresseMail/{adresseMail}")
     public UserAccount loadUserByUsername(@PathVariable String adresseMail) {
         return accountService.loadUserByAdresseMail(adresseMail);
     }
 
-    @GetMapping("/userName/{userName}/roleName/{roleName}")
-    public void addRoleToUser(@PathVariable String userName, @PathVariable String roleName) {
-        accountService.addRoleToUser(userName, roleName);
+    @GetMapping("/adresseMail/{adresseMail}/roleName/{roleName}")
+    public void addRoleToUser(@PathVariable String adresseMail, @PathVariable String roleName) {
+        accountService.addRoleToUser(adresseMail, roleName);
     }
 
     @PostMapping("/register")
