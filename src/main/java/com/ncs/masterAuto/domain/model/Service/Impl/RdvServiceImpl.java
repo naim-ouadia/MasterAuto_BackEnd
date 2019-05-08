@@ -7,7 +7,6 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
-import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;

@@ -10,12 +10,14 @@ import com.ncs.masterAuto.domain.model.Service.MarqueVoitureService;
 import com.ncs.masterAuto.domain.model.dao.MarqueVoitureDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author wadie
  */
 @Service
+@Transactional
 public class MarqueVoitureServiceImpl implements MarqueVoitureService {
 
     @Autowired

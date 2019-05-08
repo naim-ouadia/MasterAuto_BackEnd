@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.bean;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,12 +23,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Tuning {
+public class ServiceRapide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nomTuning;
+    private String nomServiceRapide;
     private Double prix;
 
 }

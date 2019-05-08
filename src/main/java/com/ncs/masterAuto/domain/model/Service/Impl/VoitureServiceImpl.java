@@ -15,12 +15,14 @@ import com.ncs.masterAuto.domain.model.dao.VoitureDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author wadie
  */
 @Service
+@Transactional
 public class VoitureServiceImpl implements VoitureService {
 
     @Autowired

@@ -8,7 +8,6 @@ package com.ncs.masterAuto.domain.rest;
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,11 +48,3 @@ public class AccountRest {
     }
 
 }
-
-//@Data
-//class UserForm {
-//
-//    private String username;
-//    private String password;
-//    private String confirmedPassword;
-//}
