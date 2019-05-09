@@ -8,7 +8,9 @@ package com.ncs.masterAuto.domain.rest;
 import com.ncs.masterAuto.domain.bean.Diagnostic;
 import com.ncs.masterAuto.domain.bean.Mecanique;
 import com.ncs.masterAuto.domain.model.Service.MaintenanceService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,15 @@ public class MaintenanceRest {
 
     @Autowired
     private MaintenanceService maintenanceService;
+
+    @GetMapping("/AllDiagnostic")
+    public List<Diagnostic> findAllDiagnostic() {
+        return maintenanceService.findAllDiagnostic();
+    }
+    @GetMapping("/AllMecanique")
+    public List<Mecanique> findAllMecanique() {
+        return maintenanceService.findAllMecanique();
+    }
 
     @PostMapping("/createMecanique")
     public Mecanique saveMecanique(@RequestBody Mecanique mecanique) {

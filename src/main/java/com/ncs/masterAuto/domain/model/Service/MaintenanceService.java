@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.Diagnostic;
 import com.ncs.masterAuto.domain.bean.Mecanique;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,10 @@ public interface MaintenanceService {
     public Mecanique saveMecanique(Mecanique mecanique);
 
     public Diagnostic saveDiagnostic(Diagnostic diagnostic);
+    
+    public List<Diagnostic> findAllDiagnostic();
+
+    public List<Mecanique> findAllMecanique();
 
     public int deleteMecanique(String nomMecanique);
 

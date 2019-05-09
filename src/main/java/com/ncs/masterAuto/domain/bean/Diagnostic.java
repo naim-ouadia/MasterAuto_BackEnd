@@ -30,6 +30,7 @@ public class Diagnostic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomDiagnostic;
+    private String discription;
     private Double prix;
 
 

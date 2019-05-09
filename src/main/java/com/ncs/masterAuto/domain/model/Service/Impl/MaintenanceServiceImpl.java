@@ -10,6 +10,7 @@ import com.ncs.masterAuto.domain.bean.Mecanique;
 import com.ncs.masterAuto.domain.model.Service.MaintenanceService;
 import com.ncs.masterAuto.domain.model.dao.DiagnosticDao;
 import com.ncs.masterAuto.domain.model.dao.MecaniqueDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,16 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public int deleteDiagnostic(String nomDiagnostic) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Mecanique> findAllMecanique() {
+        return mecaniqueDao.findAll();
+    }
+
+    @Override
+    public List<Diagnostic> findAllDiagnostic() {
+        return diagnosticDao.findAll();
     }
 
 }
