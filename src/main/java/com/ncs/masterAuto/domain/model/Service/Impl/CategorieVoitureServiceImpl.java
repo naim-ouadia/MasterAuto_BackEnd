@@ -44,7 +44,7 @@ public class CategorieVoitureServiceImpl implements CategorieVoitureService {
 
     @Override
     public int createCategorie(CategorieVoiture categorie) {
-        voitureService.createVoiture(categorie, categorie.getVoitures());
+//        voitureService.createVoiture(categorie, categorie.getVoitures());
         categorieVoitureDao.save(categorie);
         return 1;
     }

@@ -30,16 +30,15 @@ import lombok.ToString;
 @ToString
 public class Rdv {
 
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateRdv;
+    private String commantaire;
     @OneToOne(fetch = FetchType.EAGER)
     private UserAccount userAccount;
     @ManyToOne
     private Technicien technicien;
-    
+
 }
