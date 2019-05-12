@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.model.Service.MarqueVoitureService;
 import com.ncs.masterAuto.domain.model.dao.MarqueVoitureDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,11 @@ public class MarqueVoitureServiceImpl implements MarqueVoitureService {
             marqueVoitureDao.save(marqueVoiture);
             return 1;
         }
+    }
+
+    @Override
+    public List<MarqueVoiture> findAll() {
+        return marqueVoitureDao.findAll();
     }
 
 }

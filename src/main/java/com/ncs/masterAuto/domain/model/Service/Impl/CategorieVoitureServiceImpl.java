@@ -9,6 +9,7 @@ import com.ncs.masterAuto.domain.bean.CategorieVoiture;
 import com.ncs.masterAuto.domain.model.Service.CategorieVoitureService;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import com.ncs.masterAuto.domain.model.dao.CategorieVoitureDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,11 @@ public class CategorieVoitureServiceImpl implements CategorieVoitureService {
         voitureService.createVoiture(categorie, categorie.getVoitures());
         categorieVoitureDao.save(categorie);
         return 1;
+    }
+
+    @Override
+    public List<CategorieVoiture> findAllCategorie() {
+        return categorieVoitureDao.findAll();
     }
 
 }

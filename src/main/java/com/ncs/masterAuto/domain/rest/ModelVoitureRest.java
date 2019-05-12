@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.model.Service.ModelVoitureService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,10 @@ public class ModelVoitureRest {
     @Autowired
     private ModelVoitureService modelVoitureService;
 
-    public ModelVoitureService getModelVoitureService() {
-        return modelVoitureService;
+    @GetMapping("/AllModel")
+    public List<ModelVoiture> findAllModel() {
+        return modelVoitureService.findAllModel();
     }
-
-    public void setModelVoitureService(ModelVoitureService modelVoitureService) {
-        this.modelVoitureService = modelVoitureService;
-    }
-    //***************************************************//
 
     @GetMapping("/nomModel/{nomModel}")
     public ModelVoiture findByNomModel(@PathVariable String nomModel) {

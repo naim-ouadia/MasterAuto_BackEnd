@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.model.Service.TypeCarburantService;
 import com.ncs.masterAuto.domain.model.dao.TypeCarburantDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,24 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class TypeCarburantServiceImpl implements TypeCarburantService {
-    
+
     @Autowired
     private TypeCarburantDao typeCarburantDao;
-    
-    public TypeCarburantDao getTypeCarburantDao() {
-        return typeCarburantDao;
-    }
-    
-    public void setTypeCarburantDao(TypeCarburantDao typeCarburantDao) {
-        this.typeCarburantDao = typeCarburantDao;
-    }
-//***************************************************************//
 
     @Override
     public TypeCarburant findByNomCarburant(String nomCarburant) {
         return typeCarburantDao.findByNomCarburant(nomCarburant);
     }
-    
+
     @Override
     public int createTypeCarburant(TypeCarburant typeCarburant) {
         TypeCarburant typeC = findByNomCarburant(typeCarburant.getNomCarburant());
@@ -49,5 +41,10 @@ public class TypeCarburantServiceImpl implements TypeCarburantService {
             return 1;
         }
     }
-    
+
+    @Override
+    public List<TypeCarburant> findAllTypeCarburant() {
+        return typeCarburantDao.findAll();
+    }
+
 }

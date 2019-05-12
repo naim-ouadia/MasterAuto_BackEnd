@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface TypeCarburantService {
     public TypeCarburant findByNomCarburant(String nomCarburant);
 
     public int createTypeCarburant(TypeCarburant typeCarburant);
+
+    public List<TypeCarburant> findAllTypeCarburant();
 }

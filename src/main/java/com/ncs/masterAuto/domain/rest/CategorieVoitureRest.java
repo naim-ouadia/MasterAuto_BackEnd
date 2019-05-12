@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
 import com.ncs.masterAuto.domain.model.Service.CategorieVoitureService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,11 @@ public class CategorieVoitureRest {
     @Autowired
     private CategorieVoitureService categorieVoitureService;
 
+    @GetMapping("/AllCategorie")
+    public List<CategorieVoiture> findAllCategorie() {
+        return categorieVoitureService.findAllCategorie();
+    }
+
     @PostMapping("/")
     public int createCategorie(@RequestBody CategorieVoiture categorie) {
         return categorieVoitureService.createCategorie(categorie);
@@ -34,15 +40,6 @@ public class CategorieVoitureRest {
     @GetMapping("/nomCategorie/{nomCategorie}")
     public CategorieVoiture findByNomCategorie(@PathVariable String nomCategorie) {
         return categorieVoitureService.findByNomCategorie(nomCategorie);
-    }
-//************getters et setters*************//
-
-    public CategorieVoitureService getCategorieVoitureService() {
-        return categorieVoitureService;
-    }
-
-    public void setCategorieVoitureService(CategorieVoitureService categorieVoitureService) {
-        this.categorieVoitureService = categorieVoitureService;
     }
 
 }

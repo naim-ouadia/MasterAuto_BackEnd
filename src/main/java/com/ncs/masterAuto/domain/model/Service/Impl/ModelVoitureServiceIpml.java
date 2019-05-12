@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.model.Service.ModelVoitureService;
 import com.ncs.masterAuto.domain.model.dao.ModelVoitureDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,15 +24,6 @@ public class ModelVoitureServiceIpml implements ModelVoitureService {
     @Autowired
     private ModelVoitureDao modelVoituredao;
 
-    public ModelVoitureDao getModelVoituredao() {
-        return modelVoituredao;
-    }
-
-    public void setModelVoituredao(ModelVoitureDao modelVoituredao) {
-        this.modelVoituredao = modelVoituredao;
-    }
-
-//*******************************************************//
     @Override
     public ModelVoiture findByNomModel(String nomModel) {
         return modelVoituredao.findByNomModel(nomModel);
@@ -46,6 +38,11 @@ public class ModelVoitureServiceIpml implements ModelVoitureService {
             modelVoituredao.save(modelVoiture);
             return 1;
         }
+    }
+
+    @Override
+    public List<ModelVoiture> findAllModel() {
+        return modelVoituredao.findAll();
     }
 
 }

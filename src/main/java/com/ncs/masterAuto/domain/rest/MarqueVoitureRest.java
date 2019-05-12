@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.model.Service.MarqueVoitureService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,6 @@ public class MarqueVoitureRest {
     @Autowired
     private MarqueVoitureService marqueVoitureService;
 
-    public MarqueVoitureService getMarqueVoitureService() {
-        return marqueVoitureService;
-    }
-
-    public void setMarqueVoitureService(MarqueVoitureService marqueVoitureService) {
-        this.marqueVoitureService = marqueVoitureService;
-    }
-//**************************************************************//
 
     @GetMapping("/nomMarque/{nomMarque}")
     public MarqueVoiture findByNomMarque(@PathVariable String nomMarque) {
@@ -43,6 +36,10 @@ public class MarqueVoitureRest {
     @PostMapping("/")
     public int createMarqueVoiture(@RequestBody MarqueVoiture marqueVoiture) {
         return marqueVoitureService.createMarqueVoiture(marqueVoiture);
+    }
+    @GetMapping("/AllMarque")
+      public List<MarqueVoiture> findAll() {
+        return marqueVoitureService.findAll();
     }
 
 }

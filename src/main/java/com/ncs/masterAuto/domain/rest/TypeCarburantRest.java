@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.model.Service.TypeCarburantService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,10 @@ public class TypeCarburantRest {
     @Autowired
     private TypeCarburantService TypeCarburantService;
 
-    public TypeCarburantService getTypeCarburantService() {
-        return TypeCarburantService;
+    @GetMapping("/AllTypeCarburant")
+    public List<TypeCarburant> findAllTypeCarburant() {
+        return TypeCarburantService.findAllTypeCarburant();
     }
-
-    public void setTypeCarburantService(TypeCarburantService TypeCarburantService) {
-        this.TypeCarburantService = TypeCarburantService;
-    }
-    //*******************************************************//
 
     @GetMapping("/nomCarburant/{nomCarburant}")
     public TypeCarburant findByNomCarburant(@PathVariable String nomCarburant) {

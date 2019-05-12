@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface MarqueVoitureService {
     public MarqueVoiture findByNomMarque(String nomMarque);
 
     public int createMarqueVoiture(MarqueVoiture marqueVoiture);
+
+    public List<MarqueVoiture> findAll();
 }

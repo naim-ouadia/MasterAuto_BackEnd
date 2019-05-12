@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,7 @@ public interface CategorieVoitureService {
     public CategorieVoiture findByNomCategorie(String nomCategorie);
 
     public int createCategorie(CategorieVoiture categorie);
+    
+    public List<CategorieVoiture> findAllCategorie();
 
 }

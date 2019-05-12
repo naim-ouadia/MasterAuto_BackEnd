@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface ModelVoitureService {
     public ModelVoiture findByNomModel(String nomModel);
 
     public int createModel(ModelVoiture modelVoiture);
+
+    public List<ModelVoiture> findAllModel();
 }
