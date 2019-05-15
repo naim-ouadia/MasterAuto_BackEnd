@@ -23,7 +23,6 @@ public class TechnicienServiceImpl implements TechnicienService {
     @Autowired
     private TechnicienDao technicienDao;
 
-//****************************************************//
     @Override
     public Technicien createTechnicien(Technicien technicien) {
         Technicien t = findByLogin(technicien.getLoginTech());

@@ -7,11 +7,11 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
+import com.ncs.masterAuto.domain.bean.UserAccount;
+import com.ncs.masterAuto.domain.model.Service.AccountService;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
-import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,37 +23,38 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class RdvServiceImpl implements RdvService {
-
+    
     @Autowired
     private RdvDao rdvDao;
     @Autowired
     private TechnicienDao technicienDao;
     @Autowired
-    private UserAccountDao userAccountDao;
-
+    private AccountService accountService;
+    
     @Override
-    public Rdv createRdv(Rdv rdv) {
-        if (rdv == null) {
-            throw new RuntimeException("Rdv est null");
+    public Rdv createRdv(String adresseMail, String dateRdv, String commentaire) {
+        UserAccount userAccount = accountService.loadUserByAdresseMail(adresseMail);
+        Rdv rdv = new Rdv();
+        if (userAccount == null) {
+            throw new RuntimeException("user non trouver");
         }
-        Rdv r = findByDateRdv(rdv.getDateRdv());
-        if (r != null) {
-            throw new RuntimeException("rdv déja existant ");
-        }
+        rdv.setCommantaire(commentaire);
+        rdv.setDateRdv(dateRdv);
+        rdv.setUserAccount(userAccount);
         rdvDao.save(rdv);
         return rdv;
     }
-
+    
     @Override
-    public Rdv findByDateRdv(Date dateRdv) {
+    public Rdv findByDateRdv(String dateRdv) {
         return rdvDao.findByDateRdv(dateRdv);
     }
-
+    
     @Override
     public Rdv findByTechnicien(Technicien technicien) {
         return rdvDao.findByTechnicien(technicien);
     }
-
+    
     @Override
     public Rdv findByLogTech(String logTech) {
         if (logTech.equals("")) {
@@ -70,6 +71,4 @@ public class RdvServiceImpl implements RdvService {
         return rdv;
     }
     
-   
-
 }

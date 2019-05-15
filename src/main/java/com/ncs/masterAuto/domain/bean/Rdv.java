@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.bean;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,8 +31,7 @@ public class Rdv {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date dateRdv;
+    private String  dateRdv;
     private String commantaire;
     @OneToOne(fetch = FetchType.EAGER)
     private UserAccount userAccount;

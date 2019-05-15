@@ -8,7 +8,6 @@ package com.ncs.masterAuto.domain.model.dao;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.bean.UserAccount;
-import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RdvDao extends JpaRepository<Rdv, Long> {
 
-    public Rdv findByDateRdv(Date dateRdv);
+    public Rdv findByDateRdv(String dateRdv);
 
     public Rdv findByUserAccount(UserAccount userAccount);
 

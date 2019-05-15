@@ -7,7 +7,6 @@ package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
-import java.util.Date;
 
 /**
  *
@@ -15,12 +14,13 @@ import java.util.Date;
  */
 public interface RdvService {
 
-    public Rdv createRdv(Rdv rdv);
+    public Rdv createRdv(String adresseMail,String dateRdv,String commentaire);
+  
 
     public Rdv findByTechnicien(Technicien technicien);
 
     public Rdv findByLogTech(String logTech);
 
-    public Rdv findByDateRdv(Date dateRdv);
+    public Rdv findByDateRdv(String dateRdv);
 
 }

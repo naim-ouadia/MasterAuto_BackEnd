@@ -27,9 +27,9 @@ public class RdvRest {
     @Autowired
     private RdvService rdvService;
 
-    @PostMapping("/")
-    public Rdv createRdv(@RequestBody Rdv rdv) {
-        return rdvService.createRdv(rdv);
+    @GetMapping("/adresseMail/{adresseMail}/dateRdv/{dateRdv}/commentaire/{commentaire}")
+    public Rdv createRdv(@PathVariable String adresseMail, @PathVariable String dateRdv, @PathVariable String commentaire) {
+        return rdvService.createRdv(adresseMail, dateRdv, commentaire);
     }
 
     @GetMapping("/logTech/{logTech}")
@@ -38,7 +38,7 @@ public class RdvRest {
     }
 
     @PostMapping("/dateRdv")
-    public Rdv findByDateRdv(@RequestBody Date dateRdv) {
+    public Rdv findByDateRdv(@RequestBody String dateRdv) {
         return rdvService.findByDateRdv(dateRdv);
     }
 }
