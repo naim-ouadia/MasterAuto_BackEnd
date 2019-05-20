@@ -31,11 +31,13 @@ public class Rdv {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String  dateRdv;
+    private String dateRdv;
     private String commantaire;
     @OneToOne(fetch = FetchType.EAGER)
     private UserAccount userAccount;
     @ManyToOne
     private Technicien technicien;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Voiture voiture;
 
 }

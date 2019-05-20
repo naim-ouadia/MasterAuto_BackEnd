@@ -6,12 +6,10 @@
 package com.ncs.masterAuto.domain.bean;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +33,5 @@ public class ModelVoiture {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateModel;
     private String nomModel;
-    @OneToMany(mappedBy = "model")
-    private List<Voiture> voitures;
 
 }

@@ -14,8 +14,7 @@ import com.ncs.masterAuto.domain.bean.Technicien;
  */
 public interface RdvService {
 
-    public Rdv createRdv(String adresseMail,String dateRdv,String commentaire);
-  
+    public Rdv createRdv(String adresseMail, String dateRdv, String commentaire);
 
     public Rdv findByTechnicien(Technicien technicien);
 

@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,13 +29,14 @@ public class Voiture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ManyToOne
     private MarqueVoiture marque;
     @ManyToOne
     private ModelVoiture model;
     @ManyToOne
     private CategorieVoiture categorie;
-    @OneToOne
+    @ManyToOne
     private TypeCarburant typeCarburant;
 
 }

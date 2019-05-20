@@ -5,12 +5,7 @@
  */
 package com.ncs.masterAuto.domain.model.Service;
 
-import com.ncs.masterAuto.domain.bean.CategorieVoiture;
-import com.ncs.masterAuto.domain.bean.MarqueVoiture;
-import com.ncs.masterAuto.domain.bean.ModelVoiture;
-import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
-import java.util.List;
 
 /**
  *
@@ -18,15 +13,14 @@ import java.util.List;
  */
 public interface VoitureService {
 
-    public int createVoiture(CategorieVoiture categorieVoiture, List<Voiture> voitures);
-    // public int createVoiture(Voiture voiture, List<CategorieVoiture> categories, List<MarqueVoiture> marques, List<ModelVoiture> models, List<TypeCarburant> typeCarburants);
+    public int createVoiture(String marque, String model, String categorie, String caraburant);
 
-    public Voiture findByMarque(MarqueVoiture marque);
+    public Voiture findByMarque(String NomMarque);
 
-    public Voiture findByModel(ModelVoiture model);
+    public Voiture findByModel(String NomModel);
 
-    public Voiture findByCategorie(CategorieVoiture categorie);
+    public Voiture findByCategorie(String NomCategorie);
 
-    public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
+    public Voiture findByTypeCarburant(String typeCarburant);
 
 }

@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +29,4 @@ public class TypeCarburant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomCarburant;
-    @OneToOne(mappedBy = "typeCarburant")
-    private Voiture voiture;
 }

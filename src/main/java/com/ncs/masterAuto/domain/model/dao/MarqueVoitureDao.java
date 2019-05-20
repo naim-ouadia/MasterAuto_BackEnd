@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.dao;
 
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface MarqueVoitureDao extends JpaRepository<MarqueVoiture, Long> {
 
     public MarqueVoiture findByNomMarque(String nomMarque);
+
+    public List<MarqueVoiture> findAll();
 
 }

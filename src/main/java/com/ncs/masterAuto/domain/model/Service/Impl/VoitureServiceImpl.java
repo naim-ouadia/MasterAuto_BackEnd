@@ -11,8 +11,11 @@ import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
+import com.ncs.masterAuto.domain.model.dao.CategorieVoitureDao;
+import com.ncs.masterAuto.domain.model.dao.MarqueVoitureDao;
+import com.ncs.masterAuto.domain.model.dao.ModelVoitureDao;
+import com.ncs.masterAuto.domain.model.dao.TypeCarburantDao;
 import com.ncs.masterAuto.domain.model.dao.VoitureDao;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,69 +30,49 @@ public class VoitureServiceImpl implements VoitureService {
 
     @Autowired
     private VoitureDao voitureDao;
-//******getters et setters*****//
-
-    public VoitureDao getVoitureDao() {
-        return voitureDao;
-    }
-
-    public void setVoitureDao(VoitureDao voitureDao) {
-        this.voitureDao = voitureDao;
-    }
-//*****************************************************
+    @Autowired
+    private ModelVoitureDao modelVoitureDao;
+    @Autowired
+    private MarqueVoitureDao marqueVoitureDao;
+    @Autowired
+    private CategorieVoitureDao categorieVoitureDao;
+    @Autowired
+    private TypeCarburantDao typeCarburantDao;
 
     @Override
-    public Voiture findByMarque(MarqueVoiture marque) {
-        return voitureDao.findByMarque(marque);
-    }
-
-    @Override
-    public Voiture findByModel(ModelVoiture model) {
-        return voitureDao.findByModel(model);
-    }
-
-    @Override
-    public Voiture findByCategorie(CategorieVoiture categorie) {
-        return voitureDao.findByCategorie(categorie);
-    }
-
-    @Override
-    public Voiture findByTypeCarburant(TypeCarburant typeCarburant) {
-        return voitureDao.findByTypeCarburant(typeCarburant);
-    }
-
-//    @Override
-//    public List<Voiture> findByClient(Client client) {
-//        return voitureDao.findByClient(client);
-//    }
-
-//    @Override
-//    public int createVoiture(Voiture voiture) {
-//
-//        for (CategorieVoiture categorieVoiture : categories) {
-//            voiture.setCategorie(categorieVoiture);
-//            voitureDao.save(voiture);
-//
-//        }
-//        return 1;
-//        for (MarqueVoiture marqueVoiture : marques) {
-//            voiture.setMarque(marqueVoiture);
-//        }
-//        for (ModelVoiture modelVoiture : models) {
-//            voiture.setModel(modelVoiture);
-//        }
-//        for (TypeCarburant typeCarburant : typeCarburants) {
-//            voiture.setTypeCarburant(typeCarburant);
-//            
-//        }
-//    }
-    @Override
-    public int createVoiture(CategorieVoiture categorieVoiture, List<Voiture> voitures) {
-        for (Voiture voiture : voitures) {
-            voiture.setCategorie(categorieVoiture);
-            voitureDao.save(voiture);
-        }
+    public int createVoiture(String marque, String model, String categorie, String caraburant) {
+        Voiture voiture = new Voiture();
+        MarqueVoiture marqueVoiture = marqueVoitureDao.findByNomMarque(marque);
+        ModelVoiture modelVoiture = modelVoitureDao.findByNomModel(model);
+        CategorieVoiture categorieVoiture = categorieVoitureDao.findByNomCategorie(categorie);
+        TypeCarburant typeCarburant = typeCarburantDao.findByNomCarburant(caraburant);
+        voiture.setMarque(marqueVoiture);
+        voiture.setCategorie(categorieVoiture);
+        voiture.setModel(modelVoiture);
+        voiture.setTypeCarburant(typeCarburant);
+        voitureDao.save(voiture);
         return 1;
+
+    }
+
+    @Override
+    public Voiture findByMarque(String NomMarque) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Voiture findByModel(String NomModel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Voiture findByCategorie(String NomCategorie) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Voiture findByTypeCarburant(String typeCarburant) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

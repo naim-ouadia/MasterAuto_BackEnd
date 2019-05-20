@@ -7,7 +7,6 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

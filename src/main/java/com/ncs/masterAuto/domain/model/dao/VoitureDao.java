@@ -10,7 +10,6 @@ import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +28,4 @@ public interface VoitureDao extends JpaRepository<Voiture, Long> {
 
     public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
 
-    
 }

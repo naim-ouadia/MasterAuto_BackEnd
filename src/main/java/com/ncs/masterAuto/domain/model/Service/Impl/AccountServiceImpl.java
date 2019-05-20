@@ -60,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
     public UserAccount loadUserByAdresseMail(String adresseMail) {
         UserAccount userAccount = userAccountDao.findByAdresseMail(adresseMail);
         if (userAccount == null) {
-            throw new RuntimeException("User non trouvé");
+           return null;
         }
         return userAccount;
     }
