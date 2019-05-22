@@ -10,8 +10,11 @@ import com.ncs.masterAuto.domain.bean.Mecanique;
 import com.ncs.masterAuto.domain.model.Service.MaintenanceService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +30,21 @@ public class MaintenanceRest {
     @Autowired
     private MaintenanceService maintenanceService;
 
+    @PutMapping("/mecanique/{id}")
+    public Mecanique updateMecanique(@RequestBody Mecanique mecanique, @PathVariable long id) {
+        return maintenanceService.updateMecanique(mecanique, id);
+    }
+
+    @GetMapping("/getMecanique/{id}")
+    public Mecanique findMecaniqueById(@PathVariable long id) {
+        return maintenanceService.findMecaniqueById(id);
+    }
+
     @GetMapping("/AllDiagnostic")
     public List<Diagnostic> findAllDiagnostic() {
         return maintenanceService.findAllDiagnostic();
     }
+
     @GetMapping("/AllMecanique")
     public List<Mecanique> findAllMecanique() {
         return maintenanceService.findAllMecanique();
@@ -46,11 +60,14 @@ public class MaintenanceRest {
         return maintenanceService.saveDiagnostic(diagnostic);
     }
 
-    public int deleteMecanique(String nomMecanique) {
-        return maintenanceService.deleteMecanique(nomMecanique);
+    @DeleteMapping("/DeleteMecanique/{id}")
+    public void deleteMecanique(@PathVariable long id) {
+        maintenanceService.deleteMecanique(id);
     }
 
-    public int deleteDiagnostic(String nomDiagnostic) {
-        return maintenanceService.deleteDiagnostic(nomDiagnostic);
+    @DeleteMapping("/DeleteDiagnostic/{id}")
+    public void deleteDiagnostic(@PathVariable long id) {
+        maintenanceService.deleteDiagnostic(id);
     }
+
 }

@@ -18,13 +18,18 @@ public interface MaintenanceService {
     public Mecanique saveMecanique(Mecanique mecanique);
 
     public Diagnostic saveDiagnostic(Diagnostic diagnostic);
-    
+
     public List<Diagnostic> findAllDiagnostic();
 
     public List<Mecanique> findAllMecanique();
 
-    public int deleteMecanique(String nomMecanique);
+    public void deleteMecanique(long id);
 
-    public int deleteDiagnostic(String nomDiagnostic);
+    public void deleteDiagnostic(long id);
+    
+    public Mecanique findMecaniqueById(long id);
+    
+    public Mecanique updateMecanique(Mecanique mecanique,long id);
+ 
 
 }

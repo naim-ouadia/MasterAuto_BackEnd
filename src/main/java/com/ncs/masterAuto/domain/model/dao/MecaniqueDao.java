@@ -19,4 +19,9 @@ public interface MecaniqueDao extends JpaRepository<Mecanique, Long> {
     public Mecanique findByNomMecanque(String nomMecanque);
 
     public Mecanique findByPrix(Double prix);
+    
+    public Mecanique findById(long id);
+    
+   
+
 }

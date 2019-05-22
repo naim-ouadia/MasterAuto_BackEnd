@@ -58,13 +58,14 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     }
 
     @Override
-    public int deleteMecanique(String nomMecanique) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteMecanique(long id) {
+        mecaniqueDao.deleteById(id);
     }
 
     @Override
-    public int deleteDiagnostic(String nomDiagnostic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteDiagnostic(long id) {
+        diagnosticDao.deleteById(id);
+
     }
 
     @Override
@@ -75,6 +76,23 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public List<Diagnostic> findAllDiagnostic() {
         return diagnosticDao.findAll();
+    }
+
+    @Override
+    public Mecanique findMecaniqueById(long id) {
+        return mecaniqueDao.findById(id);
+    }
+
+    @Override
+    public Mecanique updateMecanique(Mecanique mecanique, long id) {
+        Mecanique mecanique1 = findMecaniqueById(id);
+        if (mecanique1 == null) {
+            return null;
+        } else {
+            mecanique.setId(id);
+            mecaniqueDao.save(mecanique);
+            return mecanique;
+        }
     }
 
 }
