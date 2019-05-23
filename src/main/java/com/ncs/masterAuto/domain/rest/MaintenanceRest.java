@@ -30,6 +30,16 @@ public class MaintenanceRest {
     @Autowired
     private MaintenanceService maintenanceService;
 
+    @GetMapping("/getDiagnostic/{id}")
+    public Diagnostic findDiagnosticById(@PathVariable long id) {
+        return maintenanceService.findDiagnosticById(id);
+    }
+
+    @PutMapping("/diagnostic/{id}")
+    public Diagnostic updateDiagnostic(@RequestBody Diagnostic diagnostic, @PathVariable long id) {
+        return maintenanceService.updateDiagnostic(diagnostic, id);
+    }
+
     @PutMapping("/mecanique/{id}")
     public Mecanique updateMecanique(@RequestBody Mecanique mecanique, @PathVariable long id) {
         return maintenanceService.updateMecanique(mecanique, id);

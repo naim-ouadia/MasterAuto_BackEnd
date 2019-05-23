@@ -27,5 +27,6 @@ public interface VoitureDao extends JpaRepository<Voiture, Long> {
     public Voiture findByCategorie(CategorieVoiture categorie);
 
     public Voiture findByTypeCarburant(TypeCarburant typeCarburant);
+    
 
 }

@@ -7,7 +7,9 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Tuning;
 import com.ncs.masterAuto.domain.model.Service.TuningService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,11 @@ public class TuningRest {
 
     @Autowired
     private TuningService tuningService;
+
+    @GetMapping("/getAllTuning")
+    public List<Tuning> findAllTuning() {
+        return tuningService.findAllTuning();
+    }
 
     @PostMapping("/creatTuning")
     public Tuning saveTuning(@RequestBody Tuning tuning) {

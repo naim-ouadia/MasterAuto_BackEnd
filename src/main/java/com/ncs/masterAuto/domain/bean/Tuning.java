@@ -5,7 +5,6 @@
  */
 package com.ncs.masterAuto.domain.bean;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,5 +30,6 @@ public class Tuning {
     private Long id;
     private String nomTuning;
     private Double prix;
+    private String discription;
 
 }

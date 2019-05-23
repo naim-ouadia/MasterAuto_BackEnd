@@ -95,4 +95,21 @@ public class MaintenanceServiceImpl implements MaintenanceService {
         }
     }
 
+    @Override
+    public Diagnostic findDiagnosticById(long id) {
+        return diagnosticDao.findById(id);
+    }
+
+    @Override
+    public Diagnostic updateDiagnostic(Diagnostic diagnostic, long id) {
+        Diagnostic diagnostic1 = findDiagnosticById(id);
+        if (diagnostic1 == null) {
+            return null;
+        }else{
+            diagnostic.setId(id);
+            diagnosticDao.save(diagnostic);
+            return diagnostic;
+        }
+    }
+
 }

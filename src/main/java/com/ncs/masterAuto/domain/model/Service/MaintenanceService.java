@@ -26,10 +26,13 @@ public interface MaintenanceService {
     public void deleteMecanique(long id);
 
     public void deleteDiagnostic(long id);
-    
+
     public Mecanique findMecaniqueById(long id);
-    
-    public Mecanique updateMecanique(Mecanique mecanique,long id);
- 
+
+    public Diagnostic findDiagnosticById(long id);
+
+    public Mecanique updateMecanique(Mecanique mecanique, long id);
+
+    public Diagnostic updateDiagnostic(Diagnostic diagnostic, long id);
 
 }

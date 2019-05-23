@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.Tuning;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface TuningService {
     public Tuning saveTuning(Tuning tuning);
 
     public int deleteTuning(String nomTuning);
+
+    public List<Tuning> findAllTuning();
 }

@@ -19,4 +19,6 @@ public interface DiagnosticDao extends JpaRepository<Diagnostic, Long> {
     public Diagnostic findByNomDiagnostic(String nomDiagnostic);
 
     public Diagnostic findByPrix(Double prix);
+    
+    public Diagnostic findById(long id);
 }
