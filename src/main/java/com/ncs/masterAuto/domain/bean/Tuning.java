@@ -31,5 +31,6 @@ public class Tuning {
     private String nomTuning;
     private Double prix;
     private String discription;
+    private String image;
 
 }
