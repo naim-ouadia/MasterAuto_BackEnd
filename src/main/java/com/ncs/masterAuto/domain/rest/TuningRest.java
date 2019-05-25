@@ -8,15 +8,16 @@ package com.ncs.masterAuto.domain.rest;
 import com.ncs.masterAuto.domain.bean.Tuning;
 import com.ncs.masterAuto.domain.model.Service.TuningService;
 import com.ncs.masterAuto.domain.model.dao.TuningDao;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,19 @@ public class TuningRest {
 
     @Autowired
     private TuningService tuningService;
+
     @Autowired
     private TuningDao tuningDao;
+
+    @PutMapping("/updateTuning/{id}")
+    public Tuning updateTuning(@RequestBody Tuning tuning, @PathVariable Long id) {
+        return tuningService.updateTuning(tuning, id);
+    }
+
+    @GetMapping("/tuningById/{id}")
+    public Tuning findById(@PathVariable Long id) {
+        return tuningService.findById(id);
+    }
 
     @GetMapping("/getAllTuning")
     public List<Tuning> findAllTuning() {
@@ -45,8 +57,9 @@ public class TuningRest {
         return tuningService.saveTuning(tuning);
     }
 
-    public int deleteTuning(String nomTuning) {
-        return tuningService.deleteTuning(nomTuning);
+    @DeleteMapping("/deleteTuning/{id}")
+    public int deleteTuning(@PathVariable Long id) {
+        return tuningService.deleteTuning(id);
     }
 
     @PostMapping("/uploadPhoto/{id}")

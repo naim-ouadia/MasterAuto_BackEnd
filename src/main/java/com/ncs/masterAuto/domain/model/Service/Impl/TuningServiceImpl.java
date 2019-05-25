@@ -33,18 +33,44 @@ public class TuningServiceImpl implements TuningService {
         if (tuning1 != null) {
             throw new RuntimeException("tuning est déja existant");
         }
+        tuning.setImage("69jpg");
         tuningDao.save(tuning);
         return tuning;
     }
 
     @Override
-    public int deleteTuning(String nomTuning) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int deleteTuning(Long id) {
+        Tuning tuning = tuningDao.findById(id).get();
+        if (tuning == null) {
+            return -1;
+        } else {
+            tuningDao.delete(tuning);
+            return 1;
+        }
     }
 
     @Override
     public List<Tuning> findAllTuning() {
         return tuningDao.findAll();
+    }
+
+    @Override
+    public Tuning findById(Long id) {
+        return tuningDao.findById(id).get();
+    }
+
+    @Override
+    public Tuning updateTuning(Tuning tuning, Long id) {
+        Tuning tuning1 = tuningDao.findById(id).get();
+        if (tuning1 == null) {
+            return null;
+        } else {
+            tuning.setId(id);
+            tuning.setImage(tuning1.getImage());
+            tuningDao.save(tuning);
+            return tuning;
+        }
+
     }
 
 }

@@ -16,7 +16,11 @@ public interface TuningService {
 
     public Tuning saveTuning(Tuning tuning);
 
-    public int deleteTuning(String nomTuning);
+    public int deleteTuning(Long id);
 
     public List<Tuning> findAllTuning();
+
+    public Tuning findById(Long id);
+
+    public Tuning updateTuning(Tuning tuning, Long id);
 }
