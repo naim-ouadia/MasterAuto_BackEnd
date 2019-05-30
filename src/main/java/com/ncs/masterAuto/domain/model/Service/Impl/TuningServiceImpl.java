@@ -33,7 +33,7 @@ public class TuningServiceImpl implements TuningService {
         if (tuning1 != null) {
             throw new RuntimeException("tuning est déja existant");
         }
-        tuning.setImage("69jpg");
+        tuning.setImage("84jpg");
         tuningDao.save(tuning);
         return tuning;
     }
