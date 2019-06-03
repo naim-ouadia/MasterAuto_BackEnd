@@ -47,4 +47,16 @@ public class FischierTechniqueServiceImpl implements FichierTechniqueService {
         return fichierTechniqueDao.findById(id).get();
     }
 
+    @Override
+    public int deleteFichier(Long id) {
+        FichierTechnique fichierTechnique = fichierTechniqueDao.findById(id).get();
+        if (fichierTechnique == null) {
+            return -1;
+        } else {
+            fichierTechniqueDao.deleteById(id);
+            return 1;
+        }
+
+    }
+
 }

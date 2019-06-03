@@ -19,4 +19,6 @@ public interface FichierTechniqueService {
     public List<FichierTechnique> findAllFichierTechnique();
 
     public FichierTechnique findById(Long id);
+    
+    public int deleteFichier(Long id);
 }
