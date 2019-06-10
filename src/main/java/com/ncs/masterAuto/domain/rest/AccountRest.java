@@ -38,7 +38,8 @@ public class AccountRest {
     }
 
     @GetMapping("/adresseMail/{adresseMail}/roleName/{roleName}")
-    public void addRoleToUser(@PathVariable String adresseMail, @PathVariable String roleName) {
+    public void addRoleToUser(@PathVariable String adresseMail,
+            @PathVariable String roleName) {
         accountService.addRoleToUser(adresseMail, roleName);
     }
 
@@ -46,5 +47,4 @@ public class AccountRest {
     public UserAccount register(@RequestBody UserAccount userAccount) {
         return accountService.saveUser(userAccount);
     }
-
 }

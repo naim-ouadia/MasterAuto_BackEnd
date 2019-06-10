@@ -32,12 +32,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public UserAccount saveUser(UserAccount userAccount) {
-        UserAccount user = userAccountDao.findByAdresseMail(userAccount.getAdresseMail());
+        UserAccount user = userAccountDao.findByAdresseMail
+        (userAccount.getAdresseMail());
         if (user != null) {
             throw new RuntimeException("utilisatuer deja existant ");
-
         }
-
         UserAccount u = new UserAccount();
         u.setAdresseMail(userAccount.getAdresseMail());
         u.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
@@ -50,12 +49,10 @@ public class AccountServiceImpl implements AccountService {
         addRoleToUser(userAccount.getAdresseMail(), "User");
         return u;
     }
-
     @Override
     public RoleUser saveRole(RoleUser roleUser) {
         return roleUserDao.save(roleUser);
     }
-
     @Override
     public UserAccount loadUserByAdresseMail(String adresseMail) {
         UserAccount userAccount = userAccountDao.findByAdresseMail(adresseMail);
@@ -64,7 +61,6 @@ public class AccountServiceImpl implements AccountService {
         }
         return userAccount;
     }
-
     @Override
     public void addRoleToUser(String userName, String roleName) {
         UserAccount user = userAccountDao.findByAdresseMail(userName);

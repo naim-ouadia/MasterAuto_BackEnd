@@ -26,8 +26,8 @@ public class TechnicienRest {
     @Autowired
     private TechnicienService technicienService;
 
-    @PostMapping("/")
-    public Technicien createTechnicien(@RequestBody Technicien technicien) {
+    @PostMapping("/addNewTechnicien")
+    public int createTechnicien(@RequestBody Technicien technicien) {
         return technicienService.createTechnicien(technicien);
     }
 

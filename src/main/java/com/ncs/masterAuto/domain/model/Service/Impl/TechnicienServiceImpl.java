@@ -24,16 +24,16 @@ public class TechnicienServiceImpl implements TechnicienService {
     private TechnicienDao technicienDao;
 
     @Override
-    public Technicien createTechnicien(Technicien technicien) {
+    public int createTechnicien(Technicien technicien) {
         Technicien t = findByLogin(technicien.getLoginTech());
         if (technicien == null) {
-            throw new RuntimeException("technicien est null");
+            return -1;
         }
         if (t != null) {
-            throw new RuntimeException("technicien déja existant");
+            return -2;
         }
         technicienDao.save(technicien);
-        return technicien;
+        return 1;
 
     }
 
@@ -45,6 +45,11 @@ public class TechnicienServiceImpl implements TechnicienService {
     @Override
     public Technicien findByNom(String nom) {
         return technicienDao.findByNom(nom);
+    }
+
+    @Override
+    public Technicien loginTechnicien(String login, String pwd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
