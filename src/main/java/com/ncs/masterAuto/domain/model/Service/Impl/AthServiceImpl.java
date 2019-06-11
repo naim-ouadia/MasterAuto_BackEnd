@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class AthServiceImpl implements AthService {
-
+    
     @Autowired
     private AthDao athDao;
-
+    
     @Override
     public int addNewAth(Ath ath) {
         Ath ath1 = athDao.findByNomAth(ath.getNomAth());
@@ -36,15 +36,32 @@ public class AthServiceImpl implements AthService {
             return 1;
         }
     }
-
+    
     @Override
     public List<Ath> findAll() {
         return athDao.findAll();
     }
-
+    
     @Override
     public Ath findById(Long id) {
         return athDao.findById(id).get();
     }
-
+    
+    @Override
+    public Ath updateAth(Long id, Ath ath) {
+        Ath ath1 = athDao.findById(id).get();
+        if (ath1 == null) {
+            return null;
+        } else {
+            ath.setId(id);
+            athDao.save(ath);
+            return ath;
+        }
+    }
+    
+    @Override
+    public void deletAth(Long id) {
+        athDao.deleteById(id);
+    }
+    
 }

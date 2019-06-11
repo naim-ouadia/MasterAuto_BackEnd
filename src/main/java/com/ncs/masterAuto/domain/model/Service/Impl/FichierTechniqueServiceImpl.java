@@ -19,7 +19,7 @@ import com.ncs.masterAuto.domain.model.Service.FichierTechniqueService;
  */
 @Service
 @Transactional
-public class FischierTechniqueServiceImpl implements FichierTechniqueService {
+public class FichierTechniqueServiceImpl implements FichierTechniqueService {
 
     @Autowired
     private FichierTechniqueDao fichierTechniqueDao;
@@ -32,6 +32,7 @@ public class FischierTechniqueServiceImpl implements FichierTechniqueService {
         } else if (fichierTechnique1 != null) {
             return -2;
         } else {
+            fichierTechnique.setFichierTechnique("default");
             fichierTechniqueDao.save(fichierTechnique);
             return 1;
         }

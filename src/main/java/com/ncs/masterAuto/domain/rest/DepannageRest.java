@@ -9,9 +9,11 @@ import com.ncs.masterAuto.domain.bean.Depannage;
 import com.ncs.masterAuto.domain.model.Service.DepannageService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,4 +44,13 @@ public class DepannageRest {
         return depannageService.findById(id);
     }
 
+    @PutMapping("/updateDepannage/{id}")
+    public Depannage updateDepannage(@PathVariable Long id, @RequestBody Depannage depannage) {
+        return depannageService.updateDepannage(id, depannage);
+    }
+
+    @DeleteMapping("/deleteDepannage/{id}")
+    public void deleteDepannage(@PathVariable Long id) {
+        depannageService.deleteDepannage(id);
+    }
 }

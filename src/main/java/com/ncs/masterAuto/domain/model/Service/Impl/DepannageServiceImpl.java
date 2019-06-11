@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class DepannageServiceImpl implements DepannageService {
-
+    
     @Autowired
     private DepannageDao depannageDao;
-
+    
     @Override
     public int addNewDepannage(Depannage depannage) {
         Depannage depannage1 = depannageDao.findByNomDepannage(depannage.getNomDepannage());
@@ -36,15 +36,32 @@ public class DepannageServiceImpl implements DepannageService {
             return 1;
         }
     }
-
+    
     @Override
     public List<Depannage> findAllDepannage() {
         return depannageDao.findAll();
     }
-
+    
     @Override
     public Depannage findById(Long id) {
         return depannageDao.findById(id).get();
     }
-
+    
+    @Override
+    public Depannage updateDepannage(Long id, Depannage depannage) {
+        Depannage depannage1 = depannageDao.findById(id).get();
+        if (depannage1 == null) {
+            return null;
+        } else {
+            depannage.setId(id);
+            depannageDao.save(depannage);
+            return depannage;
+        }
+    }
+    
+    @Override
+    public void deleteDepannage(Long id) {
+        depannageDao.deleteById(id);
+    }
+    
 }

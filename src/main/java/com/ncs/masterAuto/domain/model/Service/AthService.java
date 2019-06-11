@@ -17,7 +17,11 @@ public interface AthService {
     public int addNewAth(Ath ath);
 
     public List<Ath> findAll();
-    
+
     public Ath findById(Long id);
+
+    public Ath updateAth(Long id, Ath ath);
+    
+    public void deletAth(Long id);
 
 }

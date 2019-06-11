@@ -41,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.formLogin();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/master_Auto/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/profuits/**").permitAll();
         http.authorizeRequests().antMatchers("/login/**","/master_Auto/users/register/**","/master_Auto/**").permitAll();
         http.authorizeRequests().antMatchers("/appUsers/**,/appRoles/**").hasAuthority("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();    //tte les requetes ont besoin d'une autorisation

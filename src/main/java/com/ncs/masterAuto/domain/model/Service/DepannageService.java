@@ -19,4 +19,8 @@ public interface DepannageService {
     public List<Depannage> findAllDepannage();
 
     public Depannage findById(Long id);
+
+    public Depannage updateDepannage(Long id, Depannage depannage);
+
+    public void deleteDepannage(Long id);
 }

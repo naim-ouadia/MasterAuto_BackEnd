@@ -30,4 +30,5 @@ public class FichierTechnique {
     private Long id;
     private String nomFichier;
     private String discription;
+    private String fichierTechnique;
 }
