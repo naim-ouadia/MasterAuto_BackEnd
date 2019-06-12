@@ -25,15 +25,13 @@ public class ContactServiceImpl implements ContactService {
     private ContactDao contactDao;
 
     @Override
-    public int addNewContact(Contact contact) {
+    public Contact addNewContact(Contact contact) {
         Contact contact1 = contactDao.findByNom(contact.getNom());
         if (contact == null) {
-            return -1;
-        } else if (contact1.getSpecialite().equals(contact.getSpecialite())) {
-            return -2;
+            return null;
         } else {
             contactDao.save(contact);
-            return 1;
+            return contact;
         }
     }
 
@@ -49,7 +47,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact editContact(Contact contact, Long id) {
+    public Contact upDateContact(Contact contact, Long id) {
         Contact contact1 = contactDao.findById(id).get();
         if (contact1 == null) {
             return null;
@@ -63,6 +61,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public List<Contact> findAllContact() {
         return contactDao.findAll();
+    }
+
+    @Override
+    public Contact findById(Long id) {
+        return contactDao.findById(id).get();
     }
 
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,7 +42,7 @@ public class FichierTechniqueRest {
     private FichierTechniqueDao fichierTechniqueDao;
 
     @PostMapping("/AddNewFichier")
-    public int addNewFichierTechnique(@RequestBody FichierTechnique fichierTechnique) {
+    public FichierTechnique addNewFichierTechnique(@RequestBody FichierTechnique fichierTechnique) {
         return fichierTechniqueService.addNewFichierTechnique(fichierTechnique);
     }
 
@@ -51,19 +52,24 @@ public class FichierTechniqueRest {
     }
 
     @GetMapping("/FindById/{id}")
-    public FichierTechnique findById(@PathVariable Long id) {
+    public FichierTechnique findById(@PathVariable long id) {
         return fichierTechniqueService.findById(id);
     }
 
+    @PutMapping("/upDateFichierTechnique/{id}")
+    public FichierTechnique upDateFichier(@PathVariable long id, @RequestBody FichierTechnique fichierTechnique) {
+        return fichierTechniqueService.upDateFichier(id, fichierTechnique);
+    }
+
     @DeleteMapping("/deleteById/{id}")
-    public int deleteFichier(@PathVariable Long id) {
-        return fichierTechniqueService.deleteFichier(id);
+    public void deleteFichier(@PathVariable Long id) {
+        fichierTechniqueService.deleteFichier(id);
     }
 
     @PostMapping("/uploadFichierTechnique/{id}")
     public void uploadFichierTechnique(MultipartFile file, @PathVariable Long id) throws Exception {
         FichierTechnique fichierTechnique = fichierTechniqueDao.findById(id).get();
-        fichierTechnique.setFichierTechnique(id + "pdf");
+        fichierTechnique.setFichierTechnique(id + ".pdf");
         Files.write(Paths.get(System.getProperty("user.home") + "/MasterAuto/fichiersTechnique/" + fichierTechnique.getFichierTechnique()), file.getBytes());
         fichierTechniqueDao.save(fichierTechnique);
     }
@@ -72,7 +78,7 @@ public class FichierTechniqueRest {
     public @ResponseBody
     byte[] downloadPDF(@PathVariable Long id) throws IOException {
         FichierTechnique fichierTechnique = fichierTechniqueDao.findById(id).get();
-        FileInputStream fis = new FileInputStream(new File("") + "C:/Users/wadie/MasterAuto/fichiersTechnique/" + fichierTechnique.getFichierTechnique() + ".pdf");
+        FileInputStream fis = new FileInputStream(new File("") + "C:/Users/wadie/MasterAuto/fichiersTechnique/" + fichierTechnique.getFichierTechnique());
         byte[] targetArray = new byte[fis.available()];
         fis.read(targetArray);
         return targetArray;

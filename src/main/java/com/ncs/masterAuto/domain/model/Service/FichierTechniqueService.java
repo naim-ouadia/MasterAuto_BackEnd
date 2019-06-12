@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface FichierTechniqueService {
 
-    public int addNewFichierTechnique(FichierTechnique fichierTechnique);
+    public FichierTechnique addNewFichierTechnique(FichierTechnique fichierTechnique);
 
     public List<FichierTechnique> findAllFichierTechnique();
 
-    public FichierTechnique findById(Long id);
-    
-    public int deleteFichier(Long id);
+    public FichierTechnique findById(long id);
+
+    public FichierTechnique upDateFichier(long id, FichierTechnique fichierTechnique);
+
+    public void deleteFichier(Long id);
 }

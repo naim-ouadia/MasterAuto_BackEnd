@@ -25,16 +25,16 @@ public class FichierTechniqueServiceImpl implements FichierTechniqueService {
     private FichierTechniqueDao fichierTechniqueDao;
 
     @Override
-    public int addNewFichierTechnique(FichierTechnique fichierTechnique) {
+    public FichierTechnique addNewFichierTechnique(FichierTechnique fichierTechnique) {
         FichierTechnique fichierTechnique1 = fichierTechniqueDao.findBynomFichier(fichierTechnique.getNomFichier());
         if (fichierTechnique == null) {
-            return -1;
+            return null;
         } else if (fichierTechnique1 != null) {
-            return -2;
+            return null;
         } else {
             fichierTechnique.setFichierTechnique("default");
             fichierTechniqueDao.save(fichierTechnique);
-            return 1;
+            return fichierTechnique;
         }
     }
 
@@ -44,20 +44,25 @@ public class FichierTechniqueServiceImpl implements FichierTechniqueService {
     }
 
     @Override
-    public FichierTechnique findById(Long id) {
+    public FichierTechnique findById(long id) {
         return fichierTechniqueDao.findById(id).get();
     }
 
     @Override
-    public int deleteFichier(Long id) {
-        FichierTechnique fichierTechnique = fichierTechniqueDao.findById(id).get();
-        if (fichierTechnique == null) {
-            return -1;
-        } else {
-            fichierTechniqueDao.deleteById(id);
-            return 1;
-        }
+    public void deleteFichier(Long id) {
+        fichierTechniqueDao.deleteById(id);
+    }
 
+    @Override
+    public FichierTechnique upDateFichier(long id, FichierTechnique fichierTechnique) {
+        FichierTechnique fichierTechnique1 = fichierTechniqueDao.findById(id).get();
+        if (fichierTechnique1 == null) {
+            return null;
+        } else {
+            fichierTechnique.setId(id);
+            fichierTechniqueDao.save(fichierTechnique);
+            return fichierTechnique;
+        }
     }
 
 }

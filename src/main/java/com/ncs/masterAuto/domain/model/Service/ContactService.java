@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface ContactService {
 
-    public int addNewContact(Contact contact);
+    public Contact addNewContact(Contact contact);
+
+    public Contact findById(Long id);
 
     public List<Contact> findAllContact();
 
     public int deleteContact(Long id);
 
-    public Contact editContact(Contact contact, Long id);
+    public Contact upDateContact(Contact contact, Long id);
 }

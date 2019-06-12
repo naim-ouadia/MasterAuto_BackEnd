@@ -29,14 +29,14 @@ public class ContactRest {
     @Autowired
     private ContactService contactService;
 
+    @PostMapping("/addNewContact")
+    public Contact addNewContact(@RequestBody Contact contact) {
+        return contactService.addNewContact(contact);
+    }
+
     @GetMapping("/getAllContact")
     public List<Contact> findAllContact() {
         return contactService.findAllContact();
-    }
-
-    @PostMapping("/addNewContact")
-    public int addNewContact(@RequestBody Contact contact) {
-        return contactService.addNewContact(contact);
     }
 
     @DeleteMapping("/deleteById/{id}")
@@ -44,9 +44,14 @@ public class ContactRest {
         return contactService.deleteContact(id);
     }
 
-    @PutMapping("/id/{id}")
-    public Contact editContact(@RequestBody Contact contact, @PathVariable Long id) {
-        return contactService.editContact(contact, id);
+    @PutMapping("/upDateContact/{id}")
+    public Contact upDateContact(@RequestBody Contact contact, @PathVariable Long id) {
+        return contactService.upDateContact(contact, id);
+    }
+
+    @GetMapping("/getContact/{id}")
+    public Contact findById(@PathVariable Long id) {
+        return contactService.findById(id);
     }
 
 }
