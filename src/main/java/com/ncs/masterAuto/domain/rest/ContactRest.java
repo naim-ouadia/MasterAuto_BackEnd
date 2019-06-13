@@ -54,4 +54,9 @@ public class ContactRest {
         return contactService.findById(id);
     }
 
+    @GetMapping("/rechercheContact/{recherche}")
+    public List<Contact> getRechercheContact(@PathVariable String recherche) {
+        return contactService.getRechercheContact(recherche);
+    }
+
 }

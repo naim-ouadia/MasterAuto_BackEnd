@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.Contact;
 import com.ncs.masterAuto.domain.model.Service.ContactService;
 import com.ncs.masterAuto.domain.model.dao.ContactDao;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,4 +69,24 @@ public class ContactServiceImpl implements ContactService {
         return contactDao.findById(id).get();
     }
 
+    @Override
+    public List<Contact> getRechercheContact(String recherche) {
+        if (recherche.equals("") || recherche.equals(" ")) {
+            return null;
+        }
+        List<Contact> contacts = contactDao.findAll();
+        List<Contact> listeContacts = new ArrayList<>();
+        final String SEPARATEUR = " ";
+        Contact contact = new Contact();
+        String mots[] = recherche.split(SEPARATEUR);
+        for (int i = 0; i < mots.length; i++) {
+            for (int j = 0; j < contacts.size(); j++) {
+                contact = contacts.get(j);
+                if (contact.getNom().toUpperCase().contains(mots[i].toUpperCase()) == true || contact.getSpecialite().toUpperCase().contains(mots[i].toUpperCase()) == true) {
+                    listeContacts.add(contact);
+                }
+            }
+        }
+        return listeContacts;
+    }
 }

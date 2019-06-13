@@ -23,4 +23,6 @@ public interface ContactService {
     public int deleteContact(Long id);
 
     public Contact upDateContact(Contact contact, Long id);
+
+    public List<Contact> getRechercheContact(String recherche);
 }
