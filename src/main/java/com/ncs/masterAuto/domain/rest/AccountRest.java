@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ public class AccountRest {
     @Autowired
     private AccountService accountService;
 
+    
     @PostMapping("/newRole")
     public RoleUser saveRole(@RequestBody RoleUser roleUser) {
         return accountService.saveRole(roleUser);
@@ -47,4 +49,10 @@ public class AccountRest {
     public UserAccount register(@RequestBody UserAccount userAccount) {
         return accountService.saveUser(userAccount);
     }
+    
+    @PutMapping("/upDateUser/{id}")
+    public UserAccount upDateUser(@PathVariable long id,@RequestBody UserAccount userAccount) {
+        return accountService.upDateUser(id, userAccount);
+    }
+
 }

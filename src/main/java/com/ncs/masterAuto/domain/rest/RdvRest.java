@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,5 +40,10 @@ public class RdvRest {
     @PostMapping("/dateRdv")
     public Rdv findByDateRdv(@RequestBody String dateRdv) {
         return rdvService.findByDateRdv(dateRdv);
+    }
+
+    @GetMapping("/listRdvsCient/{id}")
+    public List<Rdv> findListRdvById(@PathVariable long id) {
+        return rdvService.findListRdvById(id);
     }
 }

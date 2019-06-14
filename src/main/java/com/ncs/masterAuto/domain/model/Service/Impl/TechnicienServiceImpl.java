@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service.Impl;
 
 import com.ncs.masterAuto.domain.bean.Technicien;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.TechnicienService;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,14 @@ public class TechnicienServiceImpl implements TechnicienService {
     private TechnicienDao technicienDao;
 
     @Override
-    public int createTechnicien(Technicien technicien) {
-        Technicien t = findByLogin(technicien.getLoginTech());
-        if (technicien == null) {
-            return -1;
-        }
-        if (t != null) {
-            return -2;
-        }
-        technicienDao.save(technicien);
-        return 1;
-
+    public Technicien createTechnicien(UserAccount userAccount) {
+        Technicien technicien = new Technicien();
+        technicien.setLoginTech(userAccount.getAdresseMail());
+        technicien.setNom(userAccount.getNom());
+        technicien.setPrenom(userAccount.getPrenom());
+        technicien.setNumTel(userAccount.getNumTel());
+        technicien.setPassword(userAccount.getPassword());
+        return technicien;
     }
 
     @Override

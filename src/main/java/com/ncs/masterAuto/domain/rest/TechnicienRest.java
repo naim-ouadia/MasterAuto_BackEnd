@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Technicien;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.TechnicienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +28,8 @@ public class TechnicienRest {
     private TechnicienService technicienService;
 
     @PostMapping("/addNewTechnicien")
-    public int createTechnicien(@RequestBody Technicien technicien) {
-        return technicienService.createTechnicien(technicien);
+    public Technicien createTechnicien(@RequestBody UserAccount userAccount) {
+        return technicienService.createTechnicien(userAccount);
     }
 
     @GetMapping("/login/{login}")

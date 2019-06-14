@@ -8,12 +8,12 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.bean.UserAccount;
-import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
-import com.ncs.masterAuto.domain.model.dao.VoitureDao;
+import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,14 +25,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class RdvServiceImpl implements RdvService {
-    
+
     @Autowired
     private RdvDao rdvDao;
     @Autowired
     private TechnicienDao technicienDao;
     @Autowired
     private AccountService accountService;
-    
+    @Autowired
+    private UserAccountDao userAccountDao;
+
     @Override
     public Rdv createRdv(String adresseMail, String dateRdv, String commentaire) {
         UserAccount userAccount = accountService.loadUserByAdresseMail(adresseMail);
@@ -46,17 +48,17 @@ public class RdvServiceImpl implements RdvService {
         rdvDao.save(rdv);
         return rdv;
     }
-    
+
     @Override
     public Rdv findByDateRdv(String dateRdv) {
         return rdvDao.findByDateRdv(dateRdv);
     }
-    
+
     @Override
     public Rdv findByTechnicien(Technicien technicien) {
         return rdvDao.findByTechnicien(technicien);
     }
-    
+
     @Override
     public Rdv findByLogTech(String logTech) {
         if (logTech.equals("")) {
@@ -72,5 +74,11 @@ public class RdvServiceImpl implements RdvService {
         }
         return rdv;
     }
-    
+
+    @Override
+    public List<Rdv> findListRdvById(long id) {
+        UserAccount userAccount = userAccountDao.findById(id).get();
+        return rdvDao.findByUserAccount(userAccount);
+    }
+
 }

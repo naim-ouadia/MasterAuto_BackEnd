@@ -6,6 +6,7 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.Technicien;
+import com.ncs.masterAuto.domain.bean.UserAccount;
 
 /**
  *
@@ -13,7 +14,7 @@ import com.ncs.masterAuto.domain.bean.Technicien;
  */
 public interface TechnicienService {
 
-    public int createTechnicien(Technicien technicien);
+    public Technicien createTechnicien(UserAccount userAccount);
 
     public Technicien loginTechnicien(String login, String pwd);
 

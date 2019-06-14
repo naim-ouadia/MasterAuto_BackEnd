@@ -32,8 +32,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public UserAccount saveUser(UserAccount userAccount) {
-        UserAccount user = userAccountDao.findByAdresseMail
-        (userAccount.getAdresseMail());
+        UserAccount user = userAccountDao.findByAdresseMail(userAccount.getAdresseMail());
         if (user != null) {
             throw new RuntimeException("utilisatuer deja existant ");
         }
@@ -49,24 +48,61 @@ public class AccountServiceImpl implements AccountService {
         addRoleToUser(userAccount.getAdresseMail(), "User");
         return u;
     }
+
     @Override
     public RoleUser saveRole(RoleUser roleUser) {
         return roleUserDao.save(roleUser);
     }
+
     @Override
     public UserAccount loadUserByAdresseMail(String adresseMail) {
         UserAccount userAccount = userAccountDao.findByAdresseMail(adresseMail);
         if (userAccount == null) {
-           return null;
+            return null;
         }
         return userAccount;
     }
+
     @Override
     public void addRoleToUser(String userName, String roleName) {
         UserAccount user = userAccountDao.findByAdresseMail(userName);
         RoleUser role = roleUserDao.findByRolename(roleName);
         user.getRoles().add(role);
 
+    }
+
+    @Override
+    public UserAccount upDateUser(long id, UserAccount userAccount) {
+        UserAccount userAccount1 = userAccountDao.findById(id).get();
+        if (userAccount1 == null) {
+            return null;
+        } else {
+            userAccount.setId(id);
+            userAccount.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
+            userAccount.setActived(true);
+            userAccount.setRoles(userAccount1.getRoles());
+            userAccountDao.save(userAccount);
+            return userAccount;
+        }
+    }
+
+    @Override
+    public UserAccount addUserToTech(UserAccount userAccount) {
+        UserAccount user = userAccountDao.findByAdresseMail(userAccount.getAdresseMail());
+        if (user != null) {
+            throw new RuntimeException("utilisatuer deja existant ");
+        }
+        UserAccount u = new UserAccount();
+        u.setAdresseMail(userAccount.getAdresseMail());
+        u.setPassword(bCryptPasswordEncoder.encode(userAccount.getPassword()));
+        u.setActived(true);
+        u.setAdressePostale(userAccount.getAdressePostale());
+        u.setNumTel(userAccount.getNumTel());
+        u.setNom(userAccount.getNom());
+        u.setPrenom(userAccount.getPrenom());
+        userAccountDao.save(u);
+        addRoleToUser(userAccount.getAdresseMail(), "Technicien");
+        return u;
     }
 
 }

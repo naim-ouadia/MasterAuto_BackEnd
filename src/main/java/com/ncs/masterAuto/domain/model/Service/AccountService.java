@@ -8,8 +8,6 @@ package com.ncs.masterAuto.domain.model.Service;
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.UserAccount;
 
-
-
 /**
  *
  * @author wadie
@@ -22,5 +20,9 @@ public interface AccountService {
 
     public UserAccount loadUserByAdresseMail(String adresseMail);
 
+    public UserAccount upDateUser(long id, UserAccount userAccount);
+
     public void addRoleToUser(String userName, String roleName);
+
+    public UserAccount addUserToTech(UserAccount userAccount);
 }
