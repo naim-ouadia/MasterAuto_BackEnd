@@ -27,11 +27,12 @@ public class RdvRest {
     @Autowired
     private RdvService rdvService;
 
-    @GetMapping("/adresseMail/{adresseMail}/dateRdv/{dateRdv}/commentaire/{commentaire}")
-    public Rdv createRdv(@PathVariable String adresseMail, @PathVariable String dateRdv, @PathVariable String commentaire) {
-        return rdvService.createRdv(adresseMail, dateRdv, commentaire);
+    @GetMapping("/id/{idClient}/id/{idVoiture}/date/{dateRdv}/com/{commentaire}")
+    public Rdv createRdv(@PathVariable long idClient,@PathVariable long idVoiture,@PathVariable String dateRdv,@PathVariable String commentaire) {
+        return rdvService.createRdv(idClient, idVoiture, dateRdv, commentaire);
     }
 
+   
     @GetMapping("/logTech/{logTech}")
     public Rdv findByLogTech(@PathVariable String logTech) {
         return rdvService.findByLogTech(logTech);

@@ -36,6 +36,7 @@ public class Technicien {
     private String prenom;
     private Double numTel;
     private String password;
+    private boolean actived;
     @OneToMany
     private Collection<Rdv> rdvs = new ArrayList<>();
 }

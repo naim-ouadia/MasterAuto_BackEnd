@@ -40,7 +40,7 @@ public class VoitureServiceImpl implements VoitureService {
     private TypeCarburantDao typeCarburantDao;
 
     @Override
-    public int createVoiture(String marque, String model, String categorie, String caraburant) {
+    public Voiture createVoiture(String marque, String model, String categorie, String caraburant) {
         Voiture voiture = new Voiture();
         MarqueVoiture marqueVoiture = marqueVoitureDao.findByNomMarque(marque);
         ModelVoiture modelVoiture = modelVoitureDao.findByNomModel(model);
@@ -51,28 +51,9 @@ public class VoitureServiceImpl implements VoitureService {
         voiture.setModel(modelVoiture);
         voiture.setTypeCarburant(typeCarburant);
         voitureDao.save(voiture);
-        return 1;
+        return voiture;
 
     }
 
-    @Override
-    public Voiture findByMarque(String NomMarque) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Voiture findByModel(String NomModel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Voiture findByCategorie(String NomCategorie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Voiture findByTypeCarburant(String typeCarburant) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

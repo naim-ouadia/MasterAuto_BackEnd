@@ -29,7 +29,6 @@ public class Voiture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne
     private MarqueVoiture marque;
     @ManyToOne

@@ -13,14 +13,6 @@ import com.ncs.masterAuto.domain.bean.Voiture;
  */
 public interface VoitureService {
 
-    public int createVoiture(String marque, String model, String categorie, String caraburant);
-
-    public Voiture findByMarque(String NomMarque);
-
-    public Voiture findByModel(String NomModel);
-
-    public Voiture findByCategorie(String NomCategorie);
-
-    public Voiture findByTypeCarburant(String typeCarburant);
+    public Voiture createVoiture(String marque, String model, String categorie, String caraburant);
 
 }

@@ -7,6 +7,7 @@ package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.UserAccount;
+import java.util.List;
 
 /**
  *
@@ -25,4 +26,18 @@ public interface AccountService {
     public void addRoleToUser(String userName, String roleName);
 
     public UserAccount addUserToTech(UserAccount userAccount);
+
+    public UserAccount blockedUser(Long id);
+
+    public UserAccount activatedUer(Long id);
+
+    public void deleteUserAndTech(long id);
+
+    public void deleteUser(long id);
+
+    public List<UserAccount> findAll();
+    
+    public UserAccount blockedClient(Long id);
+
+    public UserAccount activatedClient(Long id);
 }

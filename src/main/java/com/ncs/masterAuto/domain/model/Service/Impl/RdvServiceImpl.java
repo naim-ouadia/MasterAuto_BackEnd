@@ -8,11 +8,14 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.bean.UserAccount;
+import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.AccountService;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
+import com.ncs.masterAuto.domain.model.Service.TechnicienService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
 import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
+import com.ncs.masterAuto.domain.model.dao.VoitureDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,22 +34,26 @@ public class RdvServiceImpl implements RdvService {
     @Autowired
     private TechnicienDao technicienDao;
     @Autowired
-    private AccountService accountService;
-    @Autowired
     private UserAccountDao userAccountDao;
+    @Autowired
+    private VoitureDao voitureDao;
+    @Autowired
+    private TechnicienService technicienService;
 
     @Override
-    public Rdv createRdv(String adresseMail, String dateRdv, String commentaire) {
-        UserAccount userAccount = accountService.loadUserByAdresseMail(adresseMail);
+    public Rdv createRdv(long idClient, long idVoiture, String dateRdv, String commentaire) {
+        UserAccount userAccount = userAccountDao.findById(idClient).get();
+        Voiture voiture = voitureDao.findById(idVoiture).get();
+        Technicien technicien = technicienService.techForRdv();
         Rdv rdv = new Rdv();
-        if (userAccount == null) {
-            throw new RuntimeException("user non trouver");
-        }
         rdv.setCommantaire(commentaire);
         rdv.setDateRdv(dateRdv);
+        rdv.setTechnicien(technicien);
         rdv.setUserAccount(userAccount);
+        rdv.setVoiture(voiture);
         rdvDao.save(rdv);
         return rdv;
+
     }
 
     @Override

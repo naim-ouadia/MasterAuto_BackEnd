@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface RdvService {
 
-    public Rdv createRdv(String adresseMail, String dateRdv, String commentaire);
+    public Rdv createRdv(long idClient,long idVoiture, String dateRdv, String commentaire);
 
     public Rdv findByTechnicien(Technicien technicien);
 

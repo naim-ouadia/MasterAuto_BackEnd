@@ -6,13 +6,11 @@
 package com.ncs.masterAuto.domain.rest;
 
 import com.ncs.masterAuto.domain.bean.Technicien;
-import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.model.Service.TechnicienService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +25,6 @@ public class TechnicienRest {
     @Autowired
     private TechnicienService technicienService;
 
-    @PostMapping("/addNewTechnicien")
-    public Technicien createTechnicien(@RequestBody UserAccount userAccount) {
-        return technicienService.createTechnicien(userAccount);
-    }
-
     @GetMapping("/login/{login}")
     public Technicien findByLogin(@PathVariable String login) {
         return technicienService.findByLogin(login);
@@ -41,4 +34,10 @@ public class TechnicienRest {
     public Technicien findByNom(@PathVariable String nom) {
         return technicienService.findByNom(nom);
     }
+
+    @GetMapping("/findAllTechnicien")
+    public List<Technicien> findAll() {
+        return technicienService.findAll();
+    }
+
 }

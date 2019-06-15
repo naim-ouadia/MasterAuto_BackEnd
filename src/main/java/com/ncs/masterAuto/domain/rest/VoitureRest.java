@@ -5,6 +5,7 @@
  */
 package com.ncs.masterAuto.domain.rest;
 
+import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class VoitureRest {
     private VoitureService voitureService;
 
     @GetMapping("/marque/{marque}/model/{model}/categorie/{categorie}/caraburant/{caraburant}")
-    public int createVoiture(@PathVariable String marque, @PathVariable String model, @PathVariable String categorie, @PathVariable String caraburant) {
+    public Voiture createVoiture(@PathVariable String marque, @PathVariable String model, @PathVariable String categorie, @PathVariable String caraburant) {
         return voitureService.createVoiture(marque, model, categorie, caraburant);
     }
 
