@@ -25,4 +25,6 @@ public interface TechnicienService {
     
     public Technicien techForRdv();
     
+    public Technicien findById(long id);
+    
 }

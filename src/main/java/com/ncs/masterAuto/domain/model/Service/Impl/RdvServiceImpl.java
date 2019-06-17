@@ -9,7 +9,6 @@ import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.bean.UserAccount;
 import com.ncs.masterAuto.domain.bean.Voiture;
-import com.ncs.masterAuto.domain.model.Service.AccountService;
 import com.ncs.masterAuto.domain.model.Service.RdvService;
 import com.ncs.masterAuto.domain.model.Service.TechnicienService;
 import com.ncs.masterAuto.domain.model.dao.RdvDao;
@@ -57,35 +56,34 @@ public class RdvServiceImpl implements RdvService {
     }
 
     @Override
-    public Rdv findByDateRdv(String dateRdv) {
-        return rdvDao.findByDateRdv(dateRdv);
+    public List<Rdv> findListRdvById(long id) {
+        UserAccount userAccount = userAccountDao.findById(id).get();
+        return rdvDao.findByUserAccount(userAccount);
     }
 
     @Override
-    public Rdv findByTechnicien(Technicien technicien) {
+    public List<Rdv> findByTechnicien(long id) {
+        Technicien technicien = technicienDao.findById(id).get();
         return rdvDao.findByTechnicien(technicien);
     }
 
     @Override
-    public Rdv findByLogTech(String logTech) {
-        if (logTech.equals("")) {
-            throw new RuntimeException("log tech est vide");
+    public int rdvParMois(String mois) {
+
+        List<Rdv> rdvs = rdvDao.findAll();
+        int cnt = 0;
+        for (Rdv rdv : rdvs) {
+            int i = rdv.getDateRdv().indexOf("" + mois, 3);
+            if (i != -1) {
+                cnt++;
+            }
         }
-        Technicien technicien = technicienDao.findByloginTech(logTech);
-        if (technicien == null) {
-            throw new RuntimeException("technicien non trouvé");
-        }
-        Rdv rdv = findByTechnicien(technicien);
-        if (rdv == null) {
-            throw new RuntimeException("rdv non trouvé");
-        }
-        return rdv;
+        return cnt;
     }
 
     @Override
-    public List<Rdv> findListRdvById(long id) {
-        UserAccount userAccount = userAccountDao.findById(id).get();
-        return rdvDao.findByUserAccount(userAccount);
+    public List<Rdv> findAllRdv() {
+        return this.rdvDao.findAll();
     }
 
 }

@@ -40,4 +40,9 @@ public class TechnicienRest {
         return technicienService.findAll();
     }
 
+    @GetMapping("/findById/{id}")
+    public Technicien findById(@PathVariable long id) {
+        return technicienService.findById(id);
+    }
+
 }

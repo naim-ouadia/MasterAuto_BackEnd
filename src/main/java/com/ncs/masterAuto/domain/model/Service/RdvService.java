@@ -6,7 +6,6 @@
 package com.ncs.masterAuto.domain.model.Service;
 
 import com.ncs.masterAuto.domain.bean.Rdv;
-import com.ncs.masterAuto.domain.bean.Technicien;
 import java.util.List;
 
 /**
@@ -15,16 +14,14 @@ import java.util.List;
  */
 public interface RdvService {
 
-    public Rdv createRdv(long idClient,long idVoiture, String dateRdv, String commentaire);
+    public Rdv createRdv(long idClient, long idVoiture, String dateRdv, String commentaire);
 
-    public Rdv findByTechnicien(Technicien technicien);
-
-    public Rdv findByLogTech(String logTech);
-
-    public Rdv findByDateRdv(String dateRdv);
+    public List<Rdv> findByTechnicien(long id);
 
     public List<Rdv> findListRdvById(long id);
-    
 
+    public int rdvParMois(String mois);
+
+    public List<Rdv> findAllRdv();
 
 }

@@ -23,7 +23,9 @@ public interface RdvDao extends JpaRepository<Rdv, Long> {
 
     public List<Rdv> findByUserAccount(UserAccount userAccount);
 
-    public Rdv findByTechnicien(Technicien technicien);
+    public List<Rdv> findByTechnicien(Technicien technicien);
+    
+
 
 
 }

@@ -8,6 +8,7 @@ package com.ncs.masterAuto.domain.model.Service.Impl;
 import com.ncs.masterAuto.domain.bean.CategorieVoiture;
 import com.ncs.masterAuto.domain.bean.MarqueVoiture;
 import com.ncs.masterAuto.domain.bean.ModelVoiture;
+import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.TypeCarburant;
 import com.ncs.masterAuto.domain.bean.Voiture;
 import com.ncs.masterAuto.domain.model.Service.VoitureService;
@@ -16,6 +17,8 @@ import com.ncs.masterAuto.domain.model.dao.MarqueVoitureDao;
 import com.ncs.masterAuto.domain.model.dao.ModelVoitureDao;
 import com.ncs.masterAuto.domain.model.dao.TypeCarburantDao;
 import com.ncs.masterAuto.domain.model.dao.VoitureDao;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,5 +58,15 @@ public class VoitureServiceImpl implements VoitureService {
 
     }
 
+    @Override
+    public List<Voiture> findByRdv(List<Rdv> rdvs) {
+        List<Voiture> voitures = new ArrayList<>();
+        Voiture voiture = new Voiture();
+        for (Rdv rdv : rdvs) {
+            voiture = voitureDao.findById(rdv.getVoiture().getId()).get();
+            voitures.add(voiture);
+        }
+        return voitures;
+    }
 
 }

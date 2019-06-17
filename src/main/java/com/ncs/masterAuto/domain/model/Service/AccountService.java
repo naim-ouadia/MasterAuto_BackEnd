@@ -5,6 +5,7 @@
  */
 package com.ncs.masterAuto.domain.model.Service;
 
+import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.UserAccount;
 import java.util.List;
@@ -40,4 +41,6 @@ public interface AccountService {
     public UserAccount blockedClient(Long id);
 
     public UserAccount activatedClient(Long id);
+    
+    public List<UserAccount> findByRdv(List<Rdv> rdvs);
 }

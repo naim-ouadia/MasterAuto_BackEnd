@@ -11,8 +11,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,23 +26,27 @@ public class RdvRest {
     private RdvService rdvService;
 
     @GetMapping("/id/{idClient}/id/{idVoiture}/date/{dateRdv}/com/{commentaire}")
-    public Rdv createRdv(@PathVariable long idClient,@PathVariable long idVoiture,@PathVariable String dateRdv,@PathVariable String commentaire) {
+    public Rdv createRdv(@PathVariable long idClient, @PathVariable long idVoiture, @PathVariable String dateRdv, @PathVariable String commentaire) {
         return rdvService.createRdv(idClient, idVoiture, dateRdv, commentaire);
-    }
-
-   
-    @GetMapping("/logTech/{logTech}")
-    public Rdv findByLogTech(@PathVariable String logTech) {
-        return rdvService.findByLogTech(logTech);
-    }
-
-    @PostMapping("/dateRdv")
-    public Rdv findByDateRdv(@RequestBody String dateRdv) {
-        return rdvService.findByDateRdv(dateRdv);
     }
 
     @GetMapping("/listRdvsCient/{id}")
     public List<Rdv> findListRdvById(@PathVariable long id) {
         return rdvService.findListRdvById(id);
+    }
+
+    @GetMapping("/findListRdvByTechnicien/{id}")
+    public List<Rdv> findByTechnicien(@PathVariable long id) {
+        return rdvService.findByTechnicien(id);
+    }
+
+    @GetMapping("/mois/{mois}")
+    public int rdvParMois(@PathVariable String mois) {
+        return rdvService.rdvParMois(mois);
+    }
+
+    @GetMapping("/findllRdv")
+    public List<Rdv> findAllRdv() {
+        return rdvService.findAllRdv();
     }
 }

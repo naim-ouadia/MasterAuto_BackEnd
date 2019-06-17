@@ -5,6 +5,7 @@
  */
 package com.ncs.masterAuto.domain.model.Service.Impl;
 
+import com.ncs.masterAuto.domain.bean.Rdv;
 import com.ncs.masterAuto.domain.bean.RoleUser;
 import com.ncs.masterAuto.domain.bean.Technicien;
 import com.ncs.masterAuto.domain.bean.UserAccount;
@@ -13,6 +14,7 @@ import com.ncs.masterAuto.domain.model.Service.TechnicienService;
 import com.ncs.masterAuto.domain.model.dao.RoleUserDao;
 import com.ncs.masterAuto.domain.model.dao.TechnicienDao;
 import com.ncs.masterAuto.domain.model.dao.UserAccountDao;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -165,6 +167,17 @@ public class AccountServiceImpl implements AccountService {
         userAccount.setActived(true);
         userAccountDao.save(userAccount);
         return userAccount;
+    }
+
+    @Override
+    public List<UserAccount> findByRdv(List<Rdv> rdvs) {
+        List<UserAccount> users = new ArrayList<>();
+        UserAccount userAccount = new UserAccount();
+        for (Rdv rdv : rdvs) {
+            userAccount = userAccountDao.findById(rdv.getUserAccount().getId()).get();
+            users.add(userAccount);
+        }
+        return users;
     }
 
 }

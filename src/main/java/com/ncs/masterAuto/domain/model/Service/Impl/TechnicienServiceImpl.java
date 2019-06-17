@@ -72,4 +72,10 @@ public class TechnicienServiceImpl implements TechnicienService {
 
     }
 
+    @Override
+    public Technicien findById(long id) {
+        Technicien technicien = technicienDao.findById(id).get();
+        return technicien;
+    }
+
 }
