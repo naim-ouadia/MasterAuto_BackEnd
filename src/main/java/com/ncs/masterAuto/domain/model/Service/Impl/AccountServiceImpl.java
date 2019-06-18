@@ -67,10 +67,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public UserAccount loadUserByAdresseMail(String adresseMail) {
         UserAccount userAccount = userAccountDao.findByAdresseMail(adresseMail);
-        if (userAccount == null) {
+        if (adresseMail.equals(" ") || adresseMail.equals("")) {
             return null;
+        } else if (userAccount == null) {
+            return null;
+        }else{
+            return userAccount;
         }
-        return userAccount;
+        
     }
 
     @Override
